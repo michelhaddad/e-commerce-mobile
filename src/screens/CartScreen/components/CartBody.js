@@ -19,26 +19,24 @@ import Messages from '../../../messages/user';
 //PropTypes check
 import PropTypes from 'prop-types';
 
-export const CartBody = ({
-  navigation,
-  user,
-  carts,
-  loadCarts,
-  isRefreshing,
-}) => {
+export const CartBody = ({ navigation, user, carts, isRefreshing }) => {
   const dispatch = useDispatch();
   const onRemove = (itemId) => {
-    Alert.alert('Remove product', 'Do you really want to remove this product?', [
-      {
-        text: 'Cancel',
-      },
-      {
-        text: 'Agree',
-        onPress: () => {
-          dispatch(removeFromCart(carts._id, itemId));
+    Alert.alert(
+      'Remove product',
+      'Do you really want to remove this product?',
+      [
+        {
+          text: 'Cancel',
         },
-      },
-    ]);
+        {
+          text: 'Agree',
+          onPress: () => {
+            dispatch(removeFromCart(carts._id, itemId));
+          },
+        },
+      ],
+    );
   };
   return (
     <View style={styles.footer}>
@@ -61,7 +59,6 @@ export const CartBody = ({
         <View style={{ marginBottom: 80 }}>
           <FlatList
             data={carts.items}
-            onRefresh={loadCarts}
             refreshing={isRefreshing}
             keyExtractor={(item) => item.item._id}
             renderItem={({ item }) => {
@@ -88,10 +85,10 @@ export const CartBody = ({
 CartBody.propTypes = {
   user: PropTypes.object.isRequired,
   carts: PropTypes.object.isRequired,
-  loadCarts: PropTypes.func.isRequired,
   isRefreshing: PropTypes.bool.isRequired,
   navigation: PropTypes.object.isRequired,
 };
+
 const styles = StyleSheet.create({
   footer: {
     flex: 1,

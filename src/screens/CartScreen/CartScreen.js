@@ -22,18 +22,6 @@ export const CartScreen = (props) => {
   const dispatch = useDispatch();
   let total = 0;
   carts.items.map((item) => (total += +item.item.price * +item.quantity));
-  const loadCarts = useCallback(async () => {
-    setIsRefreshing(true);
-    try {
-      await dispatch(fetchCart());
-    } catch (err) {
-      alert(err);
-    }
-    setIsRefreshing(false);
-  }, [dispatch, setIsRefreshing]);
-  useEffect(() => {
-    loadCarts();
-  }, [user.userid]);
 
   return (
     <View style={styles.container}>
@@ -42,7 +30,6 @@ export const CartScreen = (props) => {
       <CartBody
         user={user}
         carts={carts}
-        loadCarts={loadCarts}
         isRefreshing={isRefreshing}
         navigation={props.navigation}
       />

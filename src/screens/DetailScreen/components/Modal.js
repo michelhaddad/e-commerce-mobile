@@ -43,7 +43,7 @@ export class ModalComp extends React.PureComponent {
         transparent={true}
         visible={modalVisible}
       >
-        <View style={styles.modalContainer}></View>
+        <View style={styles.modalContainer} />
         <View style={styles.modal}>
           <TouchableOpacity
             animation="zoomIn"
@@ -66,7 +66,7 @@ export class ModalComp extends React.PureComponent {
               size={20}
             />
             <CustomText style={{ ...styles.success, color }}>
-              Sản phẩm đã được thêm vào giỏ hàng
+              The product has been added to cart
             </CustomText>
           </View>
           <View style={styles.modelInfo}>
@@ -74,7 +74,7 @@ export class ModalComp extends React.PureComponent {
               style={{ borderRadius: 20, width: '45%', overflow: 'hidden' }}
             >
               <Image
-                source={{ uri: item.thumb }}
+                source={{ uri: item.imageUrl }}
                 style={{
                   height: 100,
                   resizeMode: 'stretch',
@@ -84,18 +84,17 @@ export class ModalComp extends React.PureComponent {
             <View style={styles.quantity}>
               <View>
                 <CustomText style={{ ...styles.title, fontSize: 15 }}>
-                  {item.filename}
-                </CustomText>
-                <CustomText style={{ fontSize: 12, color: Colors.grey }}>
-                  Cung cấp bởi Cát Tường
+                  {item.title}
                 </CustomText>
               </View>
-              <CustomText
-                style={{ marginTop: 5, fontSize: 14, color: Colors.text }}
-              >
-                Thành tiền:
-              </CustomText>
-              <NumberFormat price={item.price} />
+              <View style={styles.price}>
+                <CustomText
+                  style={{ marginTop: 5, fontSize: 14, color: Colors.text }}
+                >
+                  Price:
+                </CustomText>
+                <NumberFormat price={item.price} />
+              </View>
             </View>
           </View>
           <View
@@ -113,7 +112,9 @@ export class ModalComp extends React.PureComponent {
               ]}
               onPress={moveToCart}
             >
-              <CustomText style={styles.actionText}>View Shopping Cart</CustomText>
+              <CustomText style={styles.actionText}>
+                View Shopping Cart
+              </CustomText>
             </TouchableOpacity>
           </View>
         </View>
@@ -183,7 +184,11 @@ const styles = StyleSheet.create({
   quantity: {
     width: '48%',
     flexDirection: 'column',
-    alignItems: 'flex-start',
+    alignContent: 'space-between',
     marginLeft: 15,
+  },
+
+  price: {
+    marginTop: 6,
   },
 });

@@ -1,4 +1,4 @@
-export default comments = [
+export default [
   {
     id: 1,
     username: 'Michel Haddad',
