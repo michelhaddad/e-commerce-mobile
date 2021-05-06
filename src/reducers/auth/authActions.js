@@ -100,13 +100,14 @@ export const Login = (email, password) => {
         type: LOGIN,
         user: resData.user,
       });
+      console.log(resData.user);
     } catch (err) {
       throw err;
     }
   };
 };
 
-export const EditInfo = (phone, address) => {
+export const EditInfo = (phone, address, firstName, lastName) => {
   return async (dispatch, getState) => {
     const user = getState().auth.user;
     dispatch({
@@ -114,16 +115,18 @@ export const EditInfo = (phone, address) => {
     });
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/user/${user.userid}`, {
+        fetch(`${NEW_API_URL}/user/info`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             'auth-token': user.token,
           },
-          method: 'PATCH',
+          method: 'PUT',
           body: JSON.stringify({
             phone,
             address,
+            firstName,
+            lastName
           }),
         }),
       );
@@ -139,6 +142,8 @@ export const EditInfo = (phone, address) => {
         type: EDIT_INFO,
         phone,
         address,
+        firstName,
+        lastName
       });
     } catch (err) {
       throw err;
@@ -161,13 +166,13 @@ export const UploadProfilePic = (imageUri, filename, type) => {
     });
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/user/photo/${user.userid}`, {
+        fetch(`${NEW_API_URL}/user/image`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'multipart/form-data',
             'auth-token': user.token,
           },
-          method: 'PATCH',
+          method: 'PUT',
           body: formData,
         }),
       );
