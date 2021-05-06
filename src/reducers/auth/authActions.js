@@ -94,6 +94,7 @@ export const Login = (email, password) => {
         throw new Error(errorResData.message);
       }
       const resData = await response.json();
+      resData.user.token = resData.token;
       saveDataToStorage('user', resData.user);
       dispatch(setLogoutTimer(60 * 60 * 1000));
       dispatch({

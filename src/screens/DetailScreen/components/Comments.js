@@ -37,7 +37,7 @@ export const Comments = () => {
         style={styles.commentContainer}
       >
         <TouchableOpacity onPress={onOpen}>
-          <CustomText style={styles.title}>Comments</CustomText>
+          <CustomText style={styles.title}>Reviews</CustomText>
         </TouchableOpacity>
         <CustomText style={styles.commentCount}>{comments.length}</CustomText>
       </Animatable.View>
@@ -51,11 +51,7 @@ export const Comments = () => {
                 <View style={styles.profileContainer}>
                   <Image
                     style={styles.profilePic}
-                    source={
-                      user.profilePicture.length === 0
-                        ? require('../../../assets/Images/defaultprofile.jpg')
-                        : { uri: user.profilePicture }
-                    }
+                    source={require('../../../assets/Images/defaultprofile.jpg')}
                   />
                 </View>
                 <View

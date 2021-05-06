@@ -25,7 +25,7 @@ export class CartItem extends React.PureComponent {
     };
     const sum = +item.item.price * +item.quantity;
     const checkDesQuantity = async () => {
-      if (item.quantity == 1) {
+      if (item.quantity === 1) {
         Alert.alert(
           'Clear shopping cart',
           'Do you really want to remove this product?',
@@ -53,23 +53,20 @@ export class CartItem extends React.PureComponent {
               resizeMode: 'stretch',
               borderRadius: 5,
             }}
-            source={{ uri: item.item.thumb }}
+            source={{ uri: item.item.imageUrl }}
           />
         </View>
         <View style={styles.right}>
           <View
             style={{ flexDirection: 'row', justifyContent: 'space-between' }}
           >
-            <CustomText style={styles.title}>{item.item.filename}</CustomText>
+            <CustomText style={styles.title}>{item.item.title}</CustomText>
             <View>
               <TouchableOpacity onPress={onRemove}>
                 <MaterialCommunityIcons name="close" size={20} color="#000" />
               </TouchableOpacity>
             </View>
           </View>
-          <CustomText style={{ color: Colors.grey, fontSize: 12 }}>
-            Cung cấp bởi Cát Tường
-          </CustomText>
           <NumberFormat price={sum.toString()} />
           <View style={styles.box}>
             <TouchableOpacity onPress={checkDesQuantity} style={styles.boxMin}>
