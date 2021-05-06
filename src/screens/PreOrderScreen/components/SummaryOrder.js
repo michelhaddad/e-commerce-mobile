@@ -16,12 +16,12 @@ export class SummaryOrder extends React.PureComponent {
     return (
       <View style={styles.container}>
         <CustomText style={{ ...styles.title, marginVertical: 5 }}>
-          Tóm tắt đơn hàng
+          Order Summary
         </CustomText>
         <View style={{ backgroundColor: '#fff', paddingHorizontal: 10 }}>
           {cartItems.map((item) => {
             return (
-              <View key={item.item.createdAt}>
+              <View key={item.item._id}>
                 <PreOrderItem item={item} />
               </View>
             );
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   total: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 65,
+    marginBottom: 85,
     marginTop: 10,
     paddingHorizontal: 10,
   },
