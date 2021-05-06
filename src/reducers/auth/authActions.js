@@ -100,7 +100,6 @@ export const Login = (email, password) => {
         type: LOGIN,
         user: resData.user,
       });
-      console.log(resData.user);
     } catch (err) {
       throw err;
     }
