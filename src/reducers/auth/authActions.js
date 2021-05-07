@@ -100,6 +100,7 @@ export const Login = (email, password) => {
         type: LOGIN,
         user: resData.user,
       });
+      // console.log(resData.token);
     } catch (err) {
       throw err;
     }
@@ -115,15 +116,14 @@ export const EditInfo = (phone, address, firstName, lastName) => {
     try {
       const response = await timeoutPromise(
         fetch(`${NEW_API_URL}/user/info`, {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'auth-token': user.token,
-          },
           method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' + ' eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjYxNmQ0YTQ2NzhmMDAxNTUwZDI5ZiIsImVtYWlsIjoiYW50b255aGFkZGFkQGhvdG1haWwuY29tIiwiZmlyc3ROYW1lIjoiQW50aG9ueSIsImxhc3ROYW1lIjoiRWwgSGFkZGFkIiwiaWF0IjoxNjIwMzgyNzc2LCJleHAiOjMyNDU5NDk1NTJ9.TNbrGzbjeecIM-P1pK_4AoMLFt2gXHT6LOF_wiwCkbU',
+          },
           body: JSON.stringify({
-            phone,
-            address,
+            // phone,
+            // address,
             firstName,
             lastName
           }),
@@ -137,12 +137,14 @@ export const EditInfo = (phone, address, firstName, lastName) => {
         Error(errorResData.err);
       }
 
+      const res = await response.json();
+
       dispatch({
         type: EDIT_INFO,
         phone,
         address,
-        firstName,
-        lastName
+        firstName: res.user.firstName,
+        lastName: res.user.lastName
       });
     } catch (err) {
       throw err;
