@@ -328,7 +328,7 @@ export const DrawerNavigator = () => {
         />
       ) : (
         <>
-          <Drawer.Screen
+          {/* <Drawer.Screen
             name="TouchId"
             component={TouchIdScreen}
             options={() => ({
@@ -352,7 +352,7 @@ export const DrawerNavigator = () => {
                 />
               ),
             })}
-          />
+          /> */}
           <Drawer.Screen
             name="Profile"
             component={ProfileStackScreen}
