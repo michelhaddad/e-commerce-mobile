@@ -73,8 +73,8 @@ export default (props) => {
                 <Image
                   style={styles.profilePic}
                   source={
-                    user.profilePicture && user.profilePicture.length !== 0
-                      ? { uri: user.profilePicture }
+                    user.profileUrl && user.profileUrl.length !== 0
+                      ? { uri: user.profileUrl }
                       : require('../assets/Images/defaultprofile.png')
                   }
                 />

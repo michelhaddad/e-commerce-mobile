@@ -45,7 +45,7 @@ export const ProfileScreen = (props) => {
   return (
     <ActionSheetProvider>
       <View style={styles.container}>
-        <View style={styles.header}></View>
+        <View style={styles.header} />
         {loading ? <Loader /> : <></>}
         <View style={styles.profileContainer}>
           <View style={styles.profileBox}>

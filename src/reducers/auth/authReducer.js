@@ -75,7 +75,7 @@ export const authReducer = (state = initialState, action) => {
         isLoading: false,
       };
     case EDIT_INFO:
-      state.user.phone = action.phone;
+      state.user.phoneNumber = action.phoneNumber;
       state.user.firstName = action.firstName;
       state.user.lastName = action.lastName;
 
@@ -88,7 +88,7 @@ export const authReducer = (state = initialState, action) => {
         isLoading: false,
       };
     case UPLOAD_PROFILEPIC:
-      state.user.profilePicture = action.profilePic;
+      state.user.profileUrl = action.profileUrl;
       return {
         ...state,
         user: {

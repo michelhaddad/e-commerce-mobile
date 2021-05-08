@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  // ActionSheetIOS,
-  Platform,
-} from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 //Color
 import { FontAwesome } from '@expo/vector-icons';
 import Colors from '../../../utils/Colors';
@@ -40,11 +33,9 @@ export const ProfilePic = ({
         if (buttonIndex === 2) {
           return;
         } else if (buttonIndex === 0) {
-          const data = await _pickImage('camera');
-          result = data;
+          result = await _pickImage('camera');
         } else if (buttonIndex === 1) {
-          const data = await _pickImage('library');
-          result = data;
+          result = await _pickImage('library');
         }
         if (!result.cancelled) {
           let localUri = result.uri;
@@ -64,8 +55,8 @@ export const ProfilePic = ({
           style={styles.profilePic}
           source={
             imageUri.length === 0
-              ? user.profilePicture && user.profilePicture.length !== 0
-                ? { uri: user.profilePicture }
+              ? user.profileUrl && user.profileUrl.length !== 0
+                ? { uri: user.profileUrl }
                 : require('../../../assets/Images/defaultprofile.png')
               : { uri: imageUri }
           }
@@ -99,7 +90,7 @@ ProfilePic.propTypes = {
 };
 const styles = StyleSheet.create({
   profilePic: {
-    resizeMode: Platform.OS === 'android' ? 'cover' : 'contain',
+    resizeMode: 'contain',
     width: 120,
     height: 120,
     borderRadius: 60,

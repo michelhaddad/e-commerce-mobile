@@ -40,14 +40,14 @@ export class CategorySection extends React.PureComponent {
             }}
           />
         </View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => navigation.navigate('Product')}
           style={{ marginHorizontal: 10 }}
         >
           <BlurView tint="light" intensity={100} style={styles.seeMore}>
             <CustomText style={styles.seeMoreText}>Load more</CustomText>
           </BlurView>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     );
   }
