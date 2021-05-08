@@ -35,7 +35,7 @@ export class SummaryOrder extends React.PureComponent {
               fontWeight: '500',
             }}
           >
-            Thành tiền
+            Price
           </CustomText>
           <NumberFormat price={total.toString()} />
         </View>
