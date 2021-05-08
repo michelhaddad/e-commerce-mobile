@@ -108,7 +108,7 @@ export const Login = (email, password) => {
   };
 };
 
-export const EditInfo = (phone, firstName, lastName) => {
+export const EditInfo = (phoneNumber, firstName, lastName) => {
   return async (dispatch, getState) => {
     const user = getState().auth.user;
     dispatch({
@@ -123,7 +123,7 @@ export const EditInfo = (phone, firstName, lastName) => {
             Authorization: 'Bearer ' + user.token,
           },
           body: JSON.stringify({
-            // phone,
+            phoneNumber,
             firstName,
             lastName,
           }),
@@ -141,7 +141,7 @@ export const EditInfo = (phone, firstName, lastName) => {
 
       dispatch({
         type: EDIT_INFO,
-        phone,
+        phoneNumber: res.user.phoneNumber ?? '',
         firstName: res.user.firstName,
         lastName: res.user.lastName,
       });
