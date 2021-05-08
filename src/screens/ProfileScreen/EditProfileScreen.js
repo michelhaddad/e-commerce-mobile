@@ -14,27 +14,33 @@ import Loader from '../../components/Loaders/Loader';
 export const EditProfileScreen = (props) => {
   const { user } = props.route.params;
   const loading = useSelector((state) => state.auth.isLoading);
-  const [address, setAddress] = useState(user.address);
   const [phone, setPhone] = useState(user.phone);
+  const [firstName, setfirstName] = useState(user.firstName);
+  const [lastName, setlastName] = useState(user.lastName);
+
   const [disableButton, setDisableBotton] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user.phone !== phone || user.address !== address) {
+    if (
+      user.phone !== phone ||
+      user.firstName !== firstName ||
+      user.lastName !== lastName
+    ) {
       setDisableBotton(false);
     }
-  }, [address, phone]);
+  }, [phone, firstName, lastName]);
 
   const updateInfoHandler = async () => {
-    if (phone.length === 10 && address.length >= 6) {
+    if (phone.length >= 8 && firstName.length >= 2 && lastName.length >= 2) {
       try {
-        await dispatch(EditInfo(phone, address));
+        await dispatch(EditInfo(phone, firstName, lastName));
         props.navigation.navigate('Profile');
       } catch (err) {
         alert(err);
       }
     } else {
-      return Alert.alert('Error', 'Thông tin không hợp lệ. Vui lòng nhập lại', [
+      return Alert.alert('Error', 'Invalid information, please retry', [
         {
           text: 'OK',
         },
@@ -62,6 +68,26 @@ export const EditProfileScreen = (props) => {
             style={{ marginVertical: 10 }}
           />
           <TextInput
+            label="FirstName"
+            value={firstName}
+            mode="outlined"
+            theme={{ colors: { primary: Colors.leave_green } }}
+            selectionColor={Colors.leave_green}
+            onChangeText={(text) => setfirstName(text)}
+            style={{ marginVertical: 10 }}
+            autoCapitalize="words"
+          />
+          <TextInput
+            label="LastName"
+            value={lastName}
+            mode="outlined"
+            theme={{ colors: { primary: Colors.leave_green } }}
+            selectionColor={Colors.leave_green}
+            onChangeText={(text) => setlastName(text)}
+            style={{ marginVertical: 10 }}
+            autoCapitalize="words"
+          />
+          <TextInput
             label="Phone"
             value={phone}
             mode="outlined"
@@ -71,16 +97,6 @@ export const EditProfileScreen = (props) => {
             style={{ marginVertical: 10 }}
             keyboardType="numeric"
             returnKeyType="done"
-          />
-          <TextInput
-            label="Address"
-            value={address}
-            mode="outlined"
-            theme={{ colors: { primary: Colors.leave_green } }}
-            selectionColor={Colors.leave_green}
-            onChangeText={(text) => setAddress(text)}
-            style={{ marginVertical: 10 }}
-            autoCapitalize="words"
           />
         </View>
         <View style={styles.button}>

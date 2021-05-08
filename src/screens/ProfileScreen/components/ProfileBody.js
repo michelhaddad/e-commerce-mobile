@@ -27,14 +27,6 @@ export const ProfileBody = ({
           user.phone && user.phone.length !== 0 ? user.phone : 'Not added yet'
         }
       />
-      <Detail
-        icon="location-on"
-        content={
-          user.address && user.address.length !== 0
-            ? user.address
-            : 'Not added yet'
-        }
-      />
       <UploadButton
         uploadButton={uploadButton}
         setUploadButton={setUploadButton}

@@ -101,13 +101,14 @@ export const Login = (email, password) => {
         type: LOGIN,
         user: resData.user,
       });
+      // console.log(resData.token);
     } catch (err) {
       throw err;
     }
   };
 };
 
-export const EditInfo = (phone, address) => {
+export const EditInfo = (phone, firstName, lastName) => {
   return async (dispatch, getState) => {
     const user = getState().auth.user;
     dispatch({
@@ -115,16 +116,16 @@ export const EditInfo = (phone, address) => {
     });
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/user/${user.userid}`, {
+        fetch(`${NEW_API_URL}/user/info`, {
+          method: 'PUT',
           headers: {
-            Accept: 'application/json',
             'Content-Type': 'application/json',
-            'auth-token': user.token,
+            Authorization: 'Bearer ' + user.token,
           },
-          method: 'PATCH',
           body: JSON.stringify({
-            phone,
-            address,
+            // phone,
+            firstName,
+            lastName,
           }),
         }),
       );
@@ -136,10 +137,13 @@ export const EditInfo = (phone, address) => {
         Error(errorResData.err);
       }
 
+      const res = await response.json();
+
       dispatch({
         type: EDIT_INFO,
         phone,
-        address,
+        firstName: res.user.firstName,
+        lastName: res.user.lastName,
       });
     } catch (err) {
       throw err;
@@ -162,13 +166,13 @@ export const UploadProfilePic = (imageUri, filename, type) => {
     });
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/user/photo/${user.userid}`, {
+        fetch(`${NEW_API_URL}/user/image`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'multipart/form-data',
             'auth-token': user.token,
           },
-          method: 'PATCH',
+          method: 'PUT',
           body: formData,
         }),
       );
