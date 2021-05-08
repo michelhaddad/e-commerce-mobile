@@ -179,7 +179,7 @@ const Login = (props) => {
             </TouchableOpacity>
           </View>
         </TouchableWithoutFeedback>
-        <View style={styles.center}>
+        {/* <View style={styles.center}>
           <View style={styles.circleImage}>
             <TouchableOpacity
               onPress={
@@ -194,7 +194,7 @@ const Login = (props) => {
               />
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
       </ScrollView>
     </KeyboardAvoidingView>
   );
