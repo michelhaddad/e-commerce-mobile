@@ -88,7 +88,7 @@ export const authReducer = (state = initialState, action) => {
         isLoading: false,
       };
     case UPLOAD_PROFILEPIC:
-      state.user.profilePicture = action.profilePic;
+      state.user.profileUrl = action.profileUrl;
       return {
         ...state,
         user: {
