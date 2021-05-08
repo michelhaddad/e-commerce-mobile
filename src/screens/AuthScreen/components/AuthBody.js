@@ -19,12 +19,12 @@ const { height, width } = Dimensions.get('window');
 export const AuthBody = ({ navigation }) => {
   return (
     <>
-      <ImageBackground
+      {/* <ImageBackground
         style={{ flex: 1, position: 'absolute', height, width }}
         source={require('../../../assets/Images/flower3.jpg')}
         blurRadius={10}
-      ></ImageBackground>
-      <View style={{ position: 'absolute', top: 100 }}>
+      ></ImageBackground> */}
+      <View style={{ position: 'absolute', top: 80 }}>
         <Image
           style={styles.logo}
           source={require('../../../assets/Images/logo1.png')}
@@ -82,6 +82,6 @@ const styles = StyleSheet.create({
   logo: {
     resizeMode: 'contain',
     width: 250,
-    height: 100,
+    height: 125,
   },
 });
