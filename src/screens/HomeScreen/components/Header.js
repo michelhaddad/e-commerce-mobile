@@ -42,7 +42,7 @@ export class Header extends React.Component {
   //Search
   searchFilterFunction = (searchText) => {
     const data = this.props.products.filter((product) =>
-      product.filename.toLowerCase().includes(searchText.toLowerCase()),
+      product.title.toLowerCase().includes(searchText.toLowerCase()),
     );
     this.setState({ keyword: searchText, productsFilter: data });
   };
