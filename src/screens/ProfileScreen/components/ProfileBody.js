@@ -24,7 +24,9 @@ export const ProfileBody = ({
       <Detail
         icon="phone"
         content={
-          user.phone && user.phone.length !== 0 ? user.phone : 'Not added yet'
+          user.phoneNumber && user.phoneNumber.length !== 0
+            ? user.phoneNumber
+            : 'Not added yet'
         }
       />
       <UploadButton

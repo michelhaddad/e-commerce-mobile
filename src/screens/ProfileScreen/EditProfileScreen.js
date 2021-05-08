@@ -14,7 +14,7 @@ import Loader from '../../components/Loaders/Loader';
 export const EditProfileScreen = (props) => {
   const { user } = props.route.params;
   const loading = useSelector((state) => state.auth.isLoading);
-  const [phone, setPhone] = useState(user.phone);
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
   const [firstName, setfirstName] = useState(user.firstName);
   const [lastName, setlastName] = useState(user.lastName);
 
@@ -23,18 +23,22 @@ export const EditProfileScreen = (props) => {
 
   useEffect(() => {
     if (
-      user.phone !== phone ||
+      user.phoneNumber !== phoneNumber ||
       user.firstName !== firstName ||
       user.lastName !== lastName
     ) {
       setDisableBotton(false);
     }
-  }, [phone, firstName, lastName]);
+  }, [phoneNumber, firstName, lastName]);
 
   const updateInfoHandler = async () => {
-    if (phone.length >= 8 && firstName.length >= 2 && lastName.length >= 2) {
+    if (
+      phoneNumber.length >= 8 &&
+      firstName.length >= 2 &&
+      lastName.length >= 2
+    ) {
       try {
-        await dispatch(EditInfo(phone, firstName, lastName));
+        await dispatch(EditInfo(phoneNumber, firstName, lastName));
         props.navigation.navigate('Profile');
       } catch (err) {
         alert(err);
@@ -89,11 +93,11 @@ export const EditProfileScreen = (props) => {
           />
           <TextInput
             label="Phone"
-            value={phone}
+            value={phoneNumber}
             mode="outlined"
             theme={{ colors: { primary: Colors.leave_green } }}
             selectionColor={Colors.leave_green}
-            onChangeText={(text) => setPhone(text)}
+            onChangeText={(text) => setPhoneNumber(text)}
             style={{ marginVertical: 10 }}
             keyboardType="numeric"
             returnKeyType="done"
