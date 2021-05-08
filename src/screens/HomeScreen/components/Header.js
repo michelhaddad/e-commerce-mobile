@@ -173,7 +173,7 @@ export class Header extends React.Component {
                 <Image
                   source={require('../../../assets/Images/logoNoText.png')}
                   style={{
-                    width: height < 668 ? 130 : 120,
+                    height: 60,
                     resizeMode: 'contain',
                   }}
                 />
