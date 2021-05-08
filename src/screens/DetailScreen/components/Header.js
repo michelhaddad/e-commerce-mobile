@@ -127,6 +127,6 @@ const styles = StyleSheet.create({
     right: 0,
     width: null,
     height: HEADER_MAX_HEIGHT,
-    resizeMode: 'stretch',
+    resizeMode: 'contain',
   },
 });

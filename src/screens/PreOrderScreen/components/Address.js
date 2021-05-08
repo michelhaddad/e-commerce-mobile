@@ -65,7 +65,7 @@ const Address = ({ getInfo }) => {
         <View>
           <RNPickerSelect
             onValueChange={(value) => townsFilter(value)}
-            placeholder={{ label: 'Tỉnh/Thành phố', value: '1' }}
+            placeholder={{ label: 'Province', value: '1' }}
             items={Provinces}
             style={pickerSelectStyles}
             allowFontScaling={false}
@@ -77,7 +77,7 @@ const Address = ({ getInfo }) => {
         <View>
           <RNPickerSelect
             onValueChange={(value) => setselectedTown(value)}
-            placeholder={{ label: 'Quận/Huyện', value: '' }}
+            placeholder={{ label: 'District', value: '' }}
             items={getTowns}
             value={selectedTown}
             style={pickerSelectStyles}
@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
   container: { flex: 1, paddingHorizontal: 10, backgroundColor: '#fff' },
   boxSelect: {
     borderWidth: 1,
-    borderColor: Colors.grey,
     height: 60,
     justifyContent: 'space-between',
     marginBottom: 15,

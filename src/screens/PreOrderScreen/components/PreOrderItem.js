@@ -17,21 +17,21 @@ class PreOrderItem extends React.PureComponent {
             style={{
               width: '100%',
               height: 50,
-              resizeMode: 'stretch',
+              resizeMode: 'contain',
               borderRadius: 5,
             }}
-            source={{ uri: item.item.thumb }}
+            source={{ uri: item.item.imageUrl }}
           />
         </View>
         <View style={styles.right}>
           <View>
-            <CustomText style={styles.title}>{item.item.filename}</CustomText>
+            <CustomText style={styles.title}>{item.item.title}</CustomText>
           </View>
           <NumberFormat
             value={total.toString()}
             displayType={'text'}
             thousandSeparator={true}
-            suffix={' đ'}
+            suffix={' LBP'}
             renderText={(formattedValue) => (
               <View style={styles.priceContainer}>
                 <CustomText style={{ fontSize: 13, padding: 0 }}>

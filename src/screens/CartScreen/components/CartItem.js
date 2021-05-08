@@ -50,7 +50,7 @@ export class CartItem extends React.PureComponent {
             style={{
               width: '100%',
               height: 90,
-              resizeMode: 'stretch',
+              resizeMode: 'contain',
               borderRadius: 5,
             }}
             source={{ uri: item.item.imageUrl }}

@@ -35,7 +35,7 @@ export const Header = ({ navigation }) => {
         </View>
 
         <View style={styles.orderStepsContainer}>
-          <CustomText style={styles.title}> Địa chỉ giao hàng </CustomText>
+          <CustomText style={styles.title}> Shipping Address </CustomText>
           <View style={styles.orderSteps}>
             <OrderSteps position={1} />
           </View>

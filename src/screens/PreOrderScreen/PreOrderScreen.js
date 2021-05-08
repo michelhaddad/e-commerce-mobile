@@ -36,7 +36,6 @@ export const PreOrderScreen = (props) => {
       }, 1000);
       return () => clearInterval(interval);
     }
-    return;
   }, [isFocused]);
   const getInfo = (province, town) => {
     setProvince(province);
@@ -58,7 +57,7 @@ export const PreOrderScreen = (props) => {
   const fullAddress = `${address}, ${town} ,${province}`;
   const toPayment = async () => {
     try {
-      if (error == undefined && province.length !== 0 && town.length !== 0) {
+      if (error === undefined && province.length !== 0 && town.length !== 0) {
         props.navigation.navigate('Payment', {
           screen: 'PaymentScreen',
           params: {
