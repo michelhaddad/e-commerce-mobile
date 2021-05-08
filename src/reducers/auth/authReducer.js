@@ -76,7 +76,6 @@ export const authReducer = (state = initialState, action) => {
       };
     case EDIT_INFO:
       state.user.phone = action.phone;
-      state.user.address = action.address;
       state.user.firstName = action.firstName;
       state.user.lastName = action.lastName;
 

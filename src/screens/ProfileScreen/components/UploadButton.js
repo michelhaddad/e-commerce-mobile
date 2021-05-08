@@ -58,7 +58,7 @@ UploadButton.propTypes = {
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 30,
+    marginTop: 60,
   },
 });
 

@@ -108,7 +108,7 @@ export const Login = (email, password) => {
   };
 };
 
-export const EditInfo = (phone, address, firstName, lastName) => {
+export const EditInfo = (phone, firstName, lastName) => {
   return async (dispatch, getState) => {
     const user = getState().auth.user;
     dispatch({
@@ -120,13 +120,12 @@ export const EditInfo = (phone, address, firstName, lastName) => {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer' + ' eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjYxNmQ0YTQ2NzhmMDAxNTUwZDI5ZiIsImVtYWlsIjoiYW50b255aGFkZGFkQGhvdG1haWwuY29tIiwiZmlyc3ROYW1lIjoiQW50aG9ueSIsImxhc3ROYW1lIjoiRWwgSGFkZGFkIiwiaWF0IjoxNjIwMzgyNzc2LCJleHAiOjMyNDU5NDk1NTJ9.TNbrGzbjeecIM-P1pK_4AoMLFt2gXHT6LOF_wiwCkbU',
+            Authorization: 'Bearer ' + user.token,
           },
           body: JSON.stringify({
             // phone,
-            // address,
             firstName,
-            lastName
+            lastName,
           }),
         }),
       );
@@ -143,9 +142,8 @@ export const EditInfo = (phone, address, firstName, lastName) => {
       dispatch({
         type: EDIT_INFO,
         phone,
-        address,
         firstName: res.user.firstName,
-        lastName: res.user.lastName
+        lastName: res.user.lastName,
       });
     } catch (err) {
       throw err;

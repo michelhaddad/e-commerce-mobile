@@ -14,25 +14,27 @@ import Loader from '../../components/Loaders/Loader';
 export const EditProfileScreen = (props) => {
   const { user } = props.route.params;
   const loading = useSelector((state) => state.auth.isLoading);
-  const [address, setAddress] = useState(user.address);
   const [phone, setPhone] = useState(user.phone);
   const [firstName, setfirstName] = useState(user.firstName);
   const [lastName, setlastName] = useState(user.lastName);
-
 
   const [disableButton, setDisableBotton] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user.phone !== phone || user.address !== address || user.firstName !== firstName || user.lastName !== lastName ) {
+    if (
+      user.phone !== phone ||
+      user.firstName !== firstName ||
+      user.lastName !== lastName
+    ) {
       setDisableBotton(false);
     }
-  }, [address, phone, firstName, lastName]);
+  }, [phone, firstName, lastName]);
 
   const updateInfoHandler = async () => {
-    if (phone.length >= 8 && address.length >= 3 && firstName.length >=2 && lastName.length >=2) {
+    if (phone.length >= 8 && firstName.length >= 2 && lastName.length >= 2) {
       try {
-        await dispatch(EditInfo(phone, address, firstName, lastName));
+        await dispatch(EditInfo(phone, firstName, lastName));
         props.navigation.navigate('Profile');
       } catch (err) {
         alert(err);
@@ -95,16 +97,6 @@ export const EditProfileScreen = (props) => {
             style={{ marginVertical: 10 }}
             keyboardType="numeric"
             returnKeyType="done"
-          />
-          <TextInput
-            label="Address"
-            value={address}
-            mode="outlined"
-            theme={{ colors: { primary: Colors.leave_green } }}
-            selectionColor={Colors.leave_green}
-            onChangeText={(text) => setAddress(text)}
-            style={{ marginVertical: 10 }}
-            autoCapitalize="words"
           />
         </View>
         <View style={styles.button}>
