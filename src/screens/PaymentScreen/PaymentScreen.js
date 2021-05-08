@@ -34,7 +34,7 @@ export const PaymentScreen = (props) => {
     }
   });
   useEffect(() => {
-    setPayByCard(token ? true : false);
+    setPayByCard(!!token);
   }, [token]);
 
   const dispatch = useDispatch();
@@ -46,14 +46,12 @@ export const PaymentScreen = (props) => {
     addressLine1,
     city,
     district,
-    total
+    total,
   } = props.route.params;
 
   //action Add Order
   const addOrderAct = async () => {
     try {
-      console.log(token);
-      token = payByCard ? token : {};
       await dispatch(
         addOrder(
           token,
@@ -64,10 +62,10 @@ export const PaymentScreen = (props) => {
           addressLine1,
           city,
           district,
-          total
+          total,
         ),
       );
-      await dispatch(resetCart(cartId));
+      await dispatch(resetCart());
       props.navigation.navigate('FinishOrder');
     } catch (err) {
       alert(err);

@@ -57,50 +57,50 @@ export const addOrder = (
   addressLine1,
   city,
   district,
-  total
+  total,
 ) => {
   return async (dispatch, getState) => {
     dispatch({
       type: ORDER_LOADING,
     });
-    const user = getState().auth.user;
-    try {
-      const response = await timeoutPromise(
-        fetch(`${API_URL}/order/post`, {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'auth-token': user.token,
-          },
-          method: 'POST',
-          body: JSON.stringify({
-            token,
-            orderInfo: {
-              userId: user.userid,
-              items: orderItems,
-              firstName,
-              lastName,
-              phoneNumber,
-              addressLine1,
-              city,
-              district
-            },
-          }),
-        }),
-      );
-      if (!response.ok) {
-        dispatch({
-          type: ORDER_FAILURE,
-        });
-        throw new Error('Something went wrong!');
-      }
-      const resData = await response.json();
-      dispatch({
-        type: ADD_ORDER,
-        orderItem: resData.content,
-      });
-    } catch (err) {
-      throw error;
-    }
+    // const user = getState().auth.user;
+    // try {
+    //   const response = await timeoutPromise(
+    //     fetch(`${API_URL}/order/post`, {
+    //       headers: {
+    //         Accept: 'application/json',
+    //         'Content-Type': 'application/json',
+    //         'auth-token': user.token,
+    //       },
+    //       method: 'POST',
+    //       body: JSON.stringify({
+    //         token,
+    //         orderInfo: {
+    //           userId: user.userid,
+    //           items: orderItems,
+    //           firstName,
+    //           lastName,
+    //           phoneNumber,
+    //           addressLine1,
+    //           city,
+    //           district
+    //         },
+    //       }),
+    //     }),
+    //   );
+    //   if (!response.ok) {
+    //     dispatch({
+    //       type: ORDER_FAILURE,
+    //     });
+    //     throw new Error('Something went wrong!');
+    //   }
+    //   const resData = await response.json();
+    //   dispatch({
+    //     type: ADD_ORDER,
+    //     orderItem: resData.content,
+    //   });
+    // } catch (err) {
+    //   throw error;
+    // }
   };
 };

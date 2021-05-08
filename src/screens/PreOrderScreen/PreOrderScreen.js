@@ -41,7 +41,14 @@ export const PreOrderScreen = (props) => {
     }
   }, [isFocused]);
 
-  const getReceiver = (firstName, lastName, phoneNumber, addressLine1, city, district) => {
+  const getReceiver = (
+    firstName,
+    lastName,
+    phoneNumber,
+    addressLine1,
+    city,
+    district,
+  ) => {
     setFirstName(firstName);
     setlastName(lastName);
     setPhoneNumber(phoneNumber);
@@ -70,9 +77,10 @@ export const PreOrderScreen = (props) => {
             addressLine1,
             city,
             district,
-            total
-            // cartId,
-            // carts,
+            total,
+            cartId,
+            carts,
+            cartItems,
           },
         });
       } else {
