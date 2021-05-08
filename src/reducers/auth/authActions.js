@@ -158,19 +158,18 @@ export const UploadProfilePic = (imageUri, filename, type) => {
     });
     const user = getState().auth.user;
     let formData = new FormData();
-    // Infer the type of the image
-    formData.append('profilePic', {
+
+    formData.append('image', {
       uri: imageUri,
       name: filename,
-      type,
+      type: 'image/jpeg',
     });
     try {
-      const response = await timeoutPromise(
-        fetch(`${NEW_API_URL}/user/image`, {
+      let response = await timeoutPromise(
+        fetch(`${NEW_API_URL}/user/profile`, {
           headers: {
-            Accept: 'application/json',
             'Content-Type': 'multipart/form-data',
-            'auth-token': user.token,
+            Authorization: 'Bearer ' + user.token,
           },
           method: 'PUT',
           body: formData,
@@ -184,9 +183,11 @@ export const UploadProfilePic = (imageUri, filename, type) => {
         throw new Error(errorResData.err);
       }
 
+      response = await response.json();
+
       dispatch({
         type: UPLOAD_PROFILEPIC,
-        profilePic: imageUri,
+        profileUrl: response.user.profileUrl,
       });
     } catch (err) {
       throw err;
