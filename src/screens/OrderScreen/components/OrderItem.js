@@ -17,6 +17,7 @@ import Steps from '../../../components/UI/Steps';
 moment.locale('vi');
 
 export const OrderItem = ({ order }) => {
+  console.log("1");
   const [showDetails, setShowDetails] = useState(false);
   const status = () => {
     switch (order.status) {
@@ -41,7 +42,7 @@ export const OrderItem = ({ order }) => {
         </View>
 
         <View style={styles.textContainer}>
-          <CustomText style={styles.text}>Ngày đặt: </CustomText>
+          <CustomText style={styles.text}>Date of booking: </CustomText>
           <CustomText style={styles.detail}>
             {moment(order.date).format('Do MMMM  YYYY, hh:mm a ')}
           </CustomText>
@@ -49,28 +50,30 @@ export const OrderItem = ({ order }) => {
         <View style={styles.detailButtom}>
           <TouchableOpacity onPress={() => setShowDetails((prev) => !prev)}>
             <CustomText style={{ fontSize: 15, color: '#fff' }}>
-              {showDetails ? 'Ẩn đơn hàng' : 'Chi tiết đơn hàng'}
+              {showDetails ? 'Hide your order' : 'Order details'}
             </CustomText>
           </TouchableOpacity>
         </View>
         {showDetails ? (
           <View>
             <View style={styles.textContainer}>
-              <CustomText style={styles.text}>Tên người nhận: </CustomText>
-              <CustomText style={styles.detail}>{order.name}</CustomText>
+              <CustomText style={styles.text}>Recipient's Full Name: </CustomText>
+              <CustomText style={styles.detail}>{order.firstName + ' ' + order.lastName}</CustomText>
             </View>
 
             <View style={styles.textContainer}>
-              <CustomText style={styles.text}>Địa chỉ: </CustomText>
-              <CustomText style={styles.detail}>{order.address}</CustomText>
+              <CustomText style={styles.text}>Phone Number: </CustomText>
+              <CustomText style={styles.detail}>{order.phoneNumber}</CustomText>
             </View>
+
             <View style={styles.textContainer}>
-              <CustomText style={styles.text}>Số điện thoại: </CustomText>
-              <CustomText style={styles.detail}>{order.phone}</CustomText>
+              <CustomText style={styles.text}>Full Address: </CustomText>
+              <CustomText style={styles.detail}>{order.addressLine1 + ', ' + order.city + ', ' + order.district}</CustomText>
             </View>
+
             <View style={styles.textContainer}>
               <CustomText style={styles.text}>
-                Phương thức thanh toán:{' '}
+                Payment Methods:{' '}
               </CustomText>
               <CustomText style={styles.detail}>
                 {order.paymentMethod}
@@ -80,7 +83,7 @@ export const OrderItem = ({ order }) => {
               <Steps position={status()} />
             </View>
 
-            <CustomText style={styles.text}>Sản phẩm đã đặt:</CustomText>
+            <CustomText style={styles.text}>Ordered Products:</CustomText>
             <FlatList
               data={order.items}
               keyExtractor={(item) => item.item._id}
@@ -95,7 +98,7 @@ export const OrderItem = ({ order }) => {
                 justifyContent: 'space-between',
               }}
             >
-              <CustomText style={styles.text}>Tổng tiền:</CustomText>
+              <CustomText style={styles.text}>Total:</CustomText>
               <NumberFormat
                 price={order.totalAmount.toString()}
                 style={{ fontSize: 15 }}

@@ -40,26 +40,31 @@ export const PaymentScreen = (props) => {
   const dispatch = useDispatch();
   const {
     orderItems,
-    name,
-    phone,
-    total,
-    cartId,
-    fullAddress,
+    firstName,
+    lastName,
+    phoneNumber,
+    addressLine1,
+    city,
+    district,
+    total
   } = props.route.params;
 
   //action Add Order
   const addOrderAct = async () => {
     try {
+      console.log(token);
       token = payByCard ? token : {};
       await dispatch(
         addOrder(
           token,
           orderItems,
-          name,
-          total,
-          paymentMethod,
-          fullAddress,
-          phone,
+          firstName,
+          lastName,
+          phoneNumber,
+          addressLine1,
+          city,
+          district,
+          total
         ),
       );
       await dispatch(resetCart(cartId));

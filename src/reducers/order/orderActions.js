@@ -49,13 +49,15 @@ export const fetchOrder = () => {
 
 //Add order
 export const addOrder = (
-  token,
+  // token,
   orderItems,
-  name,
-  totalAmount,
-  paymentMethod,
-  fullAddress,
-  phone,
+  firstName,
+  lastName,
+  phoneNumber,
+  addressLine1,
+  city,
+  district,
+  total
 ) => {
   return async (dispatch, getState) => {
     dispatch({
@@ -76,11 +78,12 @@ export const addOrder = (
             orderInfo: {
               userId: user.userid,
               items: orderItems,
-              name,
-              totalAmount,
-              paymentMethod,
-              address: fullAddress,
-              phone,
+              firstName,
+              lastName,
+              phoneNumber,
+              addressLine1,
+              city,
+              district
             },
           }),
         }),
