@@ -13,16 +13,15 @@ export const fetchOrder = () => {
       type: ORDER_LOADING,
     });
     const user = getState().auth.user;
-    if (user.userid == undefined) {
+    if (user._id === undefined) {
       return;
     }
     try {
       const response = await timeoutPromise(
-        fetch(`${NEW_API_URL}/order`, {
+        fetch(`${NEW_API_URL}/orders`, {
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'auth-token': user.token,
+            Authorization: 'Bearer ' + user.token,
           },
           method: 'GET',
         }),
@@ -34,12 +33,9 @@ export const fetchOrder = () => {
         throw new Error("Something went wrong! Can't get your order");
       }
       const resData = await response.json();
-      const filterUserOrder = resData.content.filter(
-        (userOrder) => userOrder.userId._id === user.userid,
-      );
       dispatch({
         type: FETCH_ORDER,
-        orderData: filterUserOrder,
+        orderData: resData,
       });
     } catch (err) {
       throw err;
@@ -79,7 +75,7 @@ export const addOrder = (
               phoneNumber,
               addressLine1,
               city,
-              district
+              district,
             },
           }),
         }),
@@ -91,7 +87,7 @@ export const addOrder = (
         throw new Error('Something went wrong!');
       }
       const resData = await response.json();
-      
+
       dispatch({
         type: ADD_ORDER,
         orderItem: resData,
