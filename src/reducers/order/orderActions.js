@@ -94,7 +94,7 @@ export const addOrder = (
       
       dispatch({
         type: ADD_ORDER,
-        orderItem: resData.orderItems,
+        orderItem: resData,
       });
     } catch (err) {
       throw error;

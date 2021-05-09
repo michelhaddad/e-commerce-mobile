@@ -4,6 +4,7 @@ import { View, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import Colors from '../../../utils/Colors';
 //Item
 import ItemList from '../../PreOrderScreen/components/PreOrderItem';
+
 //Number format
 import NumberFormat from '../../../components/UI/NumberFormat';
 //Moment
@@ -34,14 +35,14 @@ export const OrderItem = ({ order }) => {
     <View style={styles.container}>
       <View style={styles.summary}>
         <View style={styles.textContainer}>
-          <CustomText style={styles.text}>Order Code: </CustomText>
+          <CustomText style={styles.text}>Order code: </CustomText>
           <CustomText style={styles.detail}>
             CT-{order._id.substr(order._id.length - 10)}
           </CustomText>
         </View>
 
         <View style={styles.textContainer}>
-          <CustomText style={styles.text}>Date of booking: </CustomText>
+          <CustomText style={styles.text}>Date of order: </CustomText>
           <CustomText style={styles.detail}>
             {moment(order.date).format('Do MMMM  YYYY, hh:mm a ')}
           </CustomText>
@@ -57,39 +58,40 @@ export const OrderItem = ({ order }) => {
           <View>
             <View style={styles.textContainer}>
               <CustomText style={styles.text}>Recipient's Full Name: </CustomText>
-              <CustomText style={styles.detail}>{order.firstName + ' ' + order.lastName}</CustomText>
+              <CustomText style={styles.detail}>{order.shippingAddress.firstName + ' ' + order.shippingAddress.lastName}</CustomText>
             </View>
 
             <View style={styles.textContainer}>
               <CustomText style={styles.text}>Phone Number: </CustomText>
-              <CustomText style={styles.detail}>{order.phoneNumber}</CustomText>
+              <CustomText style={styles.detail}>{order.shippingAddress.phoneNumber}</CustomText>
             </View>
 
             <View style={styles.textContainer}>
               <CustomText style={styles.text}>Full Address: </CustomText>
-              <CustomText style={styles.detail}>{order.addressLine1 + ', ' + order.city + ', ' + order.district}</CustomText>
+              <CustomText style={styles.detail}>{order.shippingAddress.addressLine1 + ', ' + order.shippingAddress.city + ', ' + order.shippingAddress.district}</CustomText>
             </View>
 
-            <View style={styles.textContainer}>
+            {/* <View style={styles.textContainer}>
               <CustomText style={styles.text}>
-                Payment Methods:{' '}
+                Payment Method:{' '}
               </CustomText>
               <CustomText style={styles.detail}>
                 {order.paymentMethod}
               </CustomText>
-            </View>
+            </View> */}
             <View style={styles.steps}>
               <Steps position={status()} />
             </View>
 
             <CustomText style={styles.text}>Ordered Products:</CustomText>
             <FlatList
-              data={order.items}
-              keyExtractor={(item) => item.item._id}
+              data={order.orderItems}
+              keyExtractor={(item) => item._id}
               renderItem={({ item }) => {
                 return <ItemList item={item} />;
               }}
             />
+    
             <View
               style={{
                 ...styles.textContainer,
@@ -99,7 +101,7 @@ export const OrderItem = ({ order }) => {
             >
               <CustomText style={styles.text}>Total:</CustomText>
               <NumberFormat
-                price={order.totalAmount.toString()}
+                price={order.totalPrice.toString()}
                 style={{ fontSize: 15 }}
               />
             </View>
