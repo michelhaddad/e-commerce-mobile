@@ -30,7 +30,7 @@ export class ProductItem extends React.PureComponent {
       navigation.navigate('Detail', { item });
     };
     return (
-      <View style={{ width: '48%' }}>
+      <View style={styles.root}>
         <BlurView tint="light" intensity={70} style={styles.container}>
           <View
             style={{
@@ -91,6 +91,9 @@ ProductItem.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  root: {
+    width: '48%',
+  },
   container: {
     width: '100%',
     height: 190,
