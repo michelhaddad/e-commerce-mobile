@@ -60,7 +60,6 @@ CategorySection.propTypes = {
 
 const styles = StyleSheet.create({
   category: {
-    height: 518,
     marginHorizontal: 5,
     marginVertical: 5,
     paddingVertical: 15,
