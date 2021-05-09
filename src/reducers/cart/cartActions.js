@@ -23,7 +23,7 @@ export const removeFromCart = (cartId, itemId) => {
   return async (dispatch) => {
     dispatch({
       type: 'REMOVE_FROM_CART',
-      itemId
+      itemId,
     });
   };
 };
@@ -39,7 +39,7 @@ export const decCartQuantity = (cartId, itemId) => {
 };
 
 //Reset Cart
-export const resetCart = (cartId) => {
+export const resetCart = () => {
   return async (dispatch) => {
     dispatch({
       type: 'RESET_CART',

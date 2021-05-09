@@ -11,39 +11,63 @@ import PropTypes from 'prop-types';
 //Validation
 const validate = (values) => {
   const errors = {};
-  if (!values.name) {
-    errors.name = 'Full name cannot be left blank';
-  } else if (values.name.length < 6) {
-    errors.name = 'Full name must be 6 characters or more';
+  if (!values.firstName) {
+    errors.firstName = 'First name cannot be left blank';
+  } else if (values.firstName.length <=2) {
+    errors.firstName = 'First name must be 2 characters or more';
   } else {
-    errors.name = '';
+    errors.firstName = '';
   }
-  if (!values.phone) {
-    errors.phone = 'Phone number cannot be left blank';
-  } else if (values.phone.length !== 10) {
-    errors.phone = 'Phone number must be 10 digits';
+  if (!values.lastName) {
+    errors.lastName = 'Last name cannot be left blank';
+  } else if (values.lastName.length <=2) {
+    errors.lastName = 'Last name must be 2 characters or more';
   } else {
-    errors.phone = '';
+    errors.lastName = '';
   }
-  if (!values.address) {
-    errors.address = 'Address can not be vacant';
-  } else if (values.address.length < 6) {
-    errors.address = 'The address must be 6 characters or more';
+  if (!values.phoneNumber) {
+    errors.phoneNumber = 'Phone number cannot be left blank';
+  } else if (values.phoneNumber.length !== 10) {
+    errors.phoneNumber = 'Phone number must be 8 digits or more';
   } else {
-    errors.address = '';
+    errors.phoneNumber = '';
+  }
+  if (!values.addressLine1) {
+    errors.addressLine1 = 'Address Line 1 can not be vacant';
+  } else if (values.addressLine1.length <= 4) {
+    errors.addressLine1 = 'The address line 1 must be 4 characters or more';
+  } else {
+    errors.addressLine1 = '';
+  }
+  if (!values.city) {
+    errors.city = 'City can not be vacant';
+  } else if (values.city.length <= 4) {
+    errors.city = 'The city must be 4 characters or more';
+  } else {
+    errors.city = '';
+  }
+  if (!values.district) {
+    errors.district = 'District can not be vacant';
+  } else if (values.district.length <= 4) {
+    errors.district = 'The district must be 4 characters or more';
+  } else {
+    errors.district = '';
   }
 
   return errors;
 };
 
 const User = ({ getReceiver, checkValidation }) => {
-  const [receiverName, setReceiverName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setlastName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [addressLine1, setAddressLine1] = useState('');
+  const [city, setCity] = useState('');
+  const [district, setDistrict] = useState('');
 
   useEffect(() => {
-    getReceiver(receiverName, phone, address);
-  }, [receiverName, phone, address]);
+    getReceiver(firstName, lastName, phoneNumber, addressLine1, city, district);
+  }, [firstName, lastName, phoneNumber, addressLine1, city, district]);
 
   return (
     <View style={styles.container}>
@@ -51,35 +75,66 @@ const User = ({ getReceiver, checkValidation }) => {
       <View style={styles.inputContainer}>
         <View style={styles.inputBox}>
           <Field
-            name="name"
+            name="First Name"
             maxLength={35}
-            label="Full name"
+            label="First Name"
             keyboardType="default"
             component={renderField}
-            onChangeText={(value) => setReceiverName(value)}
+            onChangeText={(value) => setFirstName(value)}
             checkValidation={checkValidation}
           />
 
           <Field
-            name="phone"
-            maxLength={10}
-            label="Phone number"
+            name="Last Name"
+            maxLength={35}
+            label="Last Name"
+            keyboardType="default"
             component={renderField}
-            onChangeText={(value) => setPhone(value)}
+            onChangeText={(value) => setlastName(value)}
+            checkValidation={checkValidation}
+          />
+
+          <Field
+            name="Phone Number"
+            maxLength={10}
+            label="Phone Number"
+            component={renderField}
+            onChangeText={(value) => setPhoneNumber(value)}
             keyboardType="numeric"
             returnKeyType="done"
             checkValidation={checkValidation}
           />
 
           <Field
-            name="address"
+            name="Address Line 1"
             maxLength={35}
-            label="Address"
+            label="Address Line 1"
             component={renderField}
-            onChangeText={(value) => setAddress(value)}
+            onChangeText={(value) => setAddressLine1(value)}
             keyboardType="default"
             checkValidation={checkValidation}
           />
+
+          <Field
+            name="City"
+            maxLength={35}
+            label="City"
+            component={renderField}
+            onChangeText={(value) => setCity(value)}
+            keyboardType="default"
+            checkValidation={checkValidation}
+          />
+
+          <Field
+            name="District"
+            maxLength={35}
+            label="District"
+            component={renderField}
+            onChangeText={(value) => setDistrict(value)}
+            keyboardType="default"
+            checkValidation={checkValidation}
+          />
+          
         </View>
       </View>
     </View>

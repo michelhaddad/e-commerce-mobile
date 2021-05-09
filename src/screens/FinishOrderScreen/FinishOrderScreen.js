@@ -21,19 +21,17 @@ export const FinishOrderScreen = (props) => {
             style={{ height: 115 }}
           />
         </View>
-        <CustomText style={styles.title}>
-          Cảm ơn, bạn đã đặt hàng thành công ^^
-        </CustomText>
+        <CustomText style={styles.title}>Order successfully placed!</CustomText>
       </View>
       <View style={styles.id}>
         <CustomText style={styles.title}>
-          Chúng tôi sẽ xác nhận đơn hàng của bạn sớm nhất.
+          We will confirm your order as soon as possible.
         </CustomText>
       </View>
       <View style={styles.buttom}>
         <TouchableOpacity onPress={() => props.navigation.navigate('Home')}>
           <CustomText style={{ ...styles.title, color: '#fff' }}>
-            Quay lại trang chủ
+            Go back to main page
           </CustomText>
         </TouchableOpacity>
       </View>

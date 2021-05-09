@@ -34,35 +34,37 @@ export const PaymentScreen = (props) => {
     }
   });
   useEffect(() => {
-    setPayByCard(token ? true : false);
+    setPayByCard(!!token);
   }, [token]);
 
   const dispatch = useDispatch();
   const {
     orderItems,
-    name,
-    phone,
+    firstName,
+    lastName,
+    phoneNumber,
+    addressLine1,
+    city,
+    district,
     total,
-    cartId,
-    fullAddress,
   } = props.route.params;
 
   //action Add Order
   const addOrderAct = async () => {
     try {
-      token = payByCard ? token : {};
       await dispatch(
         addOrder(
-          token,
           orderItems,
-          name,
+          firstName,
+          lastName,
+          phoneNumber,
+          addressLine1,
+          city,
+          district,
           total,
-          paymentMethod,
-          fullAddress,
-          phone,
         ),
       );
-      await dispatch(resetCart(cartId));
+      await dispatch(resetCart());
       props.navigation.navigate('FinishOrder');
     } catch (err) {
       alert(err);

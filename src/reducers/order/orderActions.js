@@ -1,4 +1,4 @@
-import { API_URL } from '../../utils/Config';
+import { NEW_API_URL } from '../../utils/Config';
 import { timeoutPromise } from '../../utils/Tools';
 export const ORDER_LOADING = 'ORDER_LOADING';
 export const ORDER_FAILURE = 'ORDER_FAILURE';
@@ -18,7 +18,7 @@ export const fetchOrder = () => {
     }
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/order`, {
+        fetch(`${NEW_API_URL}/order`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -49,13 +49,14 @@ export const fetchOrder = () => {
 
 //Add order
 export const addOrder = (
-  token,
   orderItems,
-  name,
-  totalAmount,
-  paymentMethod,
-  fullAddress,
-  phone,
+  firstName,
+  lastName,
+  phoneNumber,
+  addressLine1,
+  city,
+  district,
+  // total,
 ) => {
   return async (dispatch, getState) => {
     dispatch({
@@ -64,23 +65,21 @@ export const addOrder = (
     const user = getState().auth.user;
     try {
       const response = await timeoutPromise(
-        fetch(`${API_URL}/order/post`, {
+        fetch(`${NEW_API_URL}/orders`, {
           headers: {
-            Accept: 'application/json',
             'Content-Type': 'application/json',
-            'auth-token': user.token,
+            Authorization: 'Bearer ' + user.token,
           },
           method: 'POST',
           body: JSON.stringify({
-            token,
-            orderInfo: {
-              userId: user.userid,
-              items: orderItems,
-              name,
-              totalAmount,
-              paymentMethod,
-              address: fullAddress,
-              phone,
+            orderItems,
+            shippingAddress: {
+              firstName,
+              lastName,
+              phoneNumber,
+              addressLine1,
+              city,
+              district
             },
           }),
         }),
@@ -92,9 +91,10 @@ export const addOrder = (
         throw new Error('Something went wrong!');
       }
       const resData = await response.json();
+      
       dispatch({
         type: ADD_ORDER,
-        orderItem: resData.content,
+        orderItem: resData,
       });
     } catch (err) {
       throw error;

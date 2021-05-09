@@ -17,12 +17,15 @@ export const PreOrderScreen = (props) => {
   const carts = useSelector((state) => state.cart.cartItems);
   const { cartItems, total, cartId } = props.route.params;
   const [error, setError] = useState('');
-  //Can Toi uu lai
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [province, setProvince] = useState('');
-  const [town, setTown] = useState('');
+
+  //Shipping info
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setlastName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [addressLine1, setAddressLine1] = useState('');
+  const [city, setCity] = useState('');
+  const [district, setDistrict] = useState('');
+
   useEffect(() => {
     return () => {
       unmounted.current = true;
@@ -37,14 +40,21 @@ export const PreOrderScreen = (props) => {
       return () => clearInterval(interval);
     }
   }, [isFocused]);
-  const getInfo = (province, town) => {
-    setProvince(province);
-    setTown(town);
-  };
-  const getReceiver = (name, phone, address) => {
-    setName(name);
-    setPhone(phone);
-    setAddress(address);
+
+  const getReceiver = (
+    firstName,
+    lastName,
+    phoneNumber,
+    addressLine1,
+    city,
+    district,
+  ) => {
+    setFirstName(firstName);
+    setlastName(lastName);
+    setPhoneNumber(phoneNumber);
+    setAddressLine1(addressLine1);
+    setCity(city);
+    setDistrict(district);
   };
   const checkValidation = (error) => {
     setError(error);
@@ -54,40 +64,31 @@ export const PreOrderScreen = (props) => {
     orderItems.push({ item: item.item._id, quantity: item.quantity });
   });
 
-  const fullAddress = `${address}, ${town} ,${province}`;
   const toPayment = async () => {
     try {
-      if (error === undefined && province.length !== 0 && town.length !== 0) {
+      if (error === undefined) {
         props.navigation.navigate('Payment', {
           screen: 'PaymentScreen',
           params: {
-            fullAddress,
             orderItems,
-            name,
-            phone,
+            firstName,
+            lastName,
+            phoneNumber,
+            addressLine1,
+            city,
+            district,
             total,
             cartId,
             carts,
+            cartItems,
           },
         });
       } else {
-        alert('Vui lòng nhập đầy đủ thông tin.');
+        alert('Please fill all your info');
       }
     } catch (err) {
       throw err;
     }
-    // props.navigation.navigate("Payment", {
-    //   screen: "PaymentScreen",
-    //   params: {
-    //     fullAddress,
-    //     orderItems,
-    //     name,
-    //     phone,
-    //     total,
-    //     cartId,
-    //     carts,
-    //   },
-    // });
   };
   useEffect(() => {
     if (carts.items.length === 0) {
@@ -106,7 +107,6 @@ export const PreOrderScreen = (props) => {
               getReceiver={getReceiver}
               checkValidation={checkValidation}
             />
-            <Address getInfo={getInfo} />
             <SummaryOrder cartItems={cartItems} total={total} />
           </ScrollView>
           <TotalButton toPayment={toPayment} />
