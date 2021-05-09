@@ -54,7 +54,6 @@ export const PaymentScreen = (props) => {
     try {
       await dispatch(
         addOrder(
-          token,
           orderItems,
           firstName,
           lastName,

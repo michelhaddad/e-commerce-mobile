@@ -17,7 +17,6 @@ import Steps from '../../../components/UI/Steps';
 moment.locale('vi');
 
 export const OrderItem = ({ order }) => {
-  console.log("1");
   const [showDetails, setShowDetails] = useState(false);
   const status = () => {
     switch (order.status) {
@@ -35,7 +34,7 @@ export const OrderItem = ({ order }) => {
     <View style={styles.container}>
       <View style={styles.summary}>
         <View style={styles.textContainer}>
-          <CustomText style={styles.text}>Mã đơn: </CustomText>
+          <CustomText style={styles.text}>Order Code: </CustomText>
           <CustomText style={styles.detail}>
             CT-{order._id.substr(order._id.length - 10)}
           </CustomText>
