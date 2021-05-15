@@ -40,7 +40,7 @@ export const FavoriteBody = ({
       ) : FavoriteProducts.length === 0 ? (
         <View style={styles.center}>
           <CustomText style={{ fontSize: 16 }}>
-            No products in favorites
+            No products in favorites yet!
           </CustomText>
         </View>
       ) : (
