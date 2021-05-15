@@ -14,23 +14,24 @@ const UploadButton = ({
   return (
     <View style={styles.button}>
       <Button
-        icon="camera"
+        icon="plus"
         mode="contained"
         onPress={UploadProfile}
-        disabled={uploadButton}
+        // disabled={uploadButton}
         style={{
           height: 50,
           justifyContent: 'center',
           backgroundColor: Colors.leave_green,
         }}
       >
-        Update Profile Picture
+        Submit Item
       </Button>
-      {!uploadButton ? (
+      {/* {!uploadButton ? (
         <Button
           mode="contained"
           onPress={() => {
-            setUploadButton(true), setImageUri('');
+            setUploadButton(true);
+            setImageUri('');
           }}
           disabled={uploadButton}
           style={{
@@ -44,7 +45,7 @@ const UploadButton = ({
         </Button>
       ) : (
         <></>
-      )}
+      )} */}
     </View>
   );
 };

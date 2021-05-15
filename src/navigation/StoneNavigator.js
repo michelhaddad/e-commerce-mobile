@@ -110,7 +110,6 @@ export const AdminStackScreen = () => (
     }}
   >
     <AdminStack.Screen name="AdminScreen" component={AdminScreen} />
-    {/* <AdminStack.Screen name="Detail" component={DetailScreen} /> */}
   </AdminStack.Navigator>
 );
 
@@ -203,6 +202,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 export const TabScreen = () => {
   const carts = useSelector((state) => state.cart.cartItems);
+  const user = useSelector((state) => state.auth.user);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -243,13 +243,16 @@ export const TabScreen = () => {
           tabBarLabel: 'Favorite',
         })}
       />
-      <Tab.Screen
-        name="Admin"
-        component={AdminStackScreen}
-        options={() => ({
-          tabBarLabel: 'Admin',
-        })}
-      />
+      {user.roles && user.roles.includes('admin') ? (
+        <Tab.Screen
+          name="Admin"
+          component={AdminStackScreen}
+          options={() => ({
+            tabBarLabel: 'Admin',
+          })}
+        />
+      ) : null}
+
       <Tab.Screen
         name="Cart"
         component={CartStackScreen}

@@ -10,7 +10,6 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import PropTypes from 'prop-types';
 
 export const ItemPic = ({
-  user,
   imageUri,
   setImageUri,
   setFilename,
@@ -43,7 +42,7 @@ export const ItemPic = ({
           setImageUri(localUri);
           setFilename(filename);
           setType(result.type);
-          setUploadButton(false);
+          // setUploadButton(false);
         }
       },
     );
@@ -55,9 +54,7 @@ export const ItemPic = ({
           style={styles.profilePic}
           source={
             imageUri.length === 0
-              ? user.profileUrl && user.profileUrl.length !== 0
-                ? { uri: user.profileUrl }
-                : require('../../../assets/Images/defaultprofile.png')
+              ? require('../../../assets/icon.png')
               : { uri: imageUri }
           }
         />
@@ -80,7 +77,6 @@ export const ItemPic = ({
 };
 
 ItemPic.propTypes = {
-  user: PropTypes.object.isRequired,
   imageUri: PropTypes.string.isRequired,
   setImageUri: PropTypes.func.isRequired,
   setFilename: PropTypes.func.isRequired,
