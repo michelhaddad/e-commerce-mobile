@@ -120,12 +120,6 @@ export default (props) => {
                 source={require('../assets/Images/cocktail.jpg')}
               />
             </OpenURL>
-            {/* <OpenURL url={websiteUrl}>
-              <Image
-                style={{ resizeMode: 'contain', width: 80, height: 80 }}
-                source={require('../assets/Images/social2.png')}
-              />
-            </OpenURL> */}
           </View>
         </View>
       </DrawerContentScrollView>
