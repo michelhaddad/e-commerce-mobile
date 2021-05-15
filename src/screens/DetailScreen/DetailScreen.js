@@ -26,7 +26,7 @@ export const DetailScreen = (props) => {
   const type = item.color;
   const [modalVisible, setModalVisible] = useState(false);
   //Favorite
-  const FavoriteProducts = useSelector((state) =>
+  const isFavorite = useSelector((state) =>
     state.fav.favoriteList.some((product) => product._id === item._id),
   );
   useEffect(() => {
@@ -58,7 +58,7 @@ export const DetailScreen = (props) => {
       <Comments />
       <ActionButton
         item={item}
-        FavoriteProducts={FavoriteProducts}
+        isFavorite={isFavorite}
         setShowSnackbar={setShowSnackbar}
         setModalVisible={setModalVisible}
         setMessage={setMessage}
