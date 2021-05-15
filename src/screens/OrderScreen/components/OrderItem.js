@@ -44,7 +44,7 @@ export const OrderItem = ({ order }) => {
         <View style={styles.textContainer}>
           <CustomText style={styles.text}>Date of order: </CustomText>
           <CustomText style={styles.detail}>
-            {moment(order.date).format('Do MMMM  YYYY, hh:mm a ')}
+            {moment(order.dateCreated).format('DD-MM-YYYY')}
           </CustomText>
         </View>
         <View style={styles.detailButtom}>
@@ -71,14 +71,6 @@ export const OrderItem = ({ order }) => {
               <CustomText style={styles.detail}>{order.shippingAddress.addressLine1 + ', ' + order.shippingAddress.city + ', ' + order.shippingAddress.district}</CustomText>
             </View>
 
-            {/* <View style={styles.textContainer}>
-              <CustomText style={styles.text}>
-                Payment Method:{' '}
-              </CustomText>
-              <CustomText style={styles.detail}>
-                {order.paymentMethod}
-              </CustomText>
-            </View> */}
             <View style={styles.steps}>
               <Steps position={status()} />
             </View>
