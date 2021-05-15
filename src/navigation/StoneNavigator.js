@@ -42,6 +42,8 @@ import { FinishOrderScreen } from '../screens/FinishOrderScreen';
 // Profile Screens
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { EditProfileScreen } from '../screens/ProfileScreen';
+//Admin Screens
+import { AdminScreen } from '../screens/AdminScreen';
 // redux
 
 // create Navigator
@@ -97,6 +99,19 @@ export const FavoriteStackScreen = () => (
     <FavoriteStack.Screen name="FavoriteScreen" component={FavoriteScreen} />
     <FavoriteStack.Screen name="Detail" component={DetailScreen} />
   </FavoriteStack.Navigator>
+);
+
+const AdminStack = createStackNavigator();
+export const AdminStackScreen = () => (
+  <AdminStack.Navigator
+    screenOptions={{
+      headerShown: false,
+      cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+    }}
+  >
+    <AdminStack.Screen name="AdminScreen" component={AdminScreen} />
+    {/* <AdminStack.Screen name="Detail" component={DetailScreen} /> */}
+  </AdminStack.Navigator>
 );
 
 const PaymentStack = createStackNavigator();
@@ -198,6 +213,8 @@ export const TabScreen = () => {
             iconName = 'home';
           } else if (route.name === 'Favorite') {
             iconName = 'hearto';
+          } else if (route.name === 'Admin') {
+            iconName = 'edit';
           } else if (route.name === 'Cart') {
             iconName = 'shoppingcart';
           }
@@ -224,6 +241,13 @@ export const TabScreen = () => {
         component={FavoriteStackScreen}
         options={() => ({
           tabBarLabel: 'Favorite',
+        })}
+      />
+      <Tab.Screen
+        name="Admin"
+        component={AdminStackScreen}
+        options={() => ({
+          tabBarLabel: 'Admin',
         })}
       />
       <Tab.Screen
