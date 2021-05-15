@@ -52,6 +52,7 @@ const LoadAssets = async () => {
     require('./src/assets/Images/logoNoText.png'),
     require('./src/assets/Images/logo1.png'),
     require('./src/assets/Images/logoTextWhite.png'),
+    require('./src/assets/Images/cocktail.jpg'),
     require('./src/assets/Images/slide1.png'),
     require('./src/assets/Images/slide2.png'),
     require('./src/assets/Images/slide3.png'),
