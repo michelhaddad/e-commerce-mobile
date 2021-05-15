@@ -32,17 +32,17 @@ export const ContactBody = () => (
       <TextIcon
         icon={require('../../../components/IconAnimation/location.json')}
         text="Beirut, Lebanon"
-        url="mailto: test@gmail.com"
+        url="mailto: The_Bois@gmail.com"
       />
       <TextIcon
         icon={require('../../../components/IconAnimation/email3.json')}
-        text="test@gmail.com"
-        url="mailto: test@gmail.com"
+        text="The_Bois@gmail.com"
+        url="mailto: The_Bois@gmail.com"
       />
       <TextIcon
         icon={require('../../../components/IconAnimation/phone2.json')}
         text="1512"
-        url="tel:1512"
+        url="tel: 1512"
       />
     </View>
   </View>
