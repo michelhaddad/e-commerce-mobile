@@ -28,7 +28,7 @@ export const ActionButton = ({
   item,
   color,
   setShowSnackbar,
-  FavoriteProducts,
+  isFavorite,
   setModalVisible,
   setMessage,
 }) => {
@@ -58,7 +58,7 @@ export const ActionButton = ({
     if (Object.keys(user).length === 0) {
       setMessage(Messages['user.login.require']);
       setShowSnackbar(true);
-    } else if (FavoriteProducts) {
+    } else if (isFavorite) {
       Alert.alert(
         'Remove favorite',
         'Do you want to remove this product from your favorites?',
@@ -68,7 +68,7 @@ export const ActionButton = ({
             style: 'cancel',
           },
           {
-            text: 'Agree',
+            text: 'Yes',
             onPress: () => dispatch(removeFavorite(item._id)),
           },
         ],
@@ -88,10 +88,10 @@ export const ActionButton = ({
           onPress={toggleFavorite}
           style={[styles.favorite, { borderColor: color }]}
         >
-          {FavoriteProducts ? (
+          {isFavorite ? (
             <LottieView
               source={require('../../../components/IconAnimation/heart.json')}
-              autoPlay={FavoriteProducts}
+              autoPlay={isFavorite}
               loop={false}
             />
           ) : (
@@ -118,7 +118,7 @@ ActionButton.propTypes = {
   user: PropTypes.object.isRequired,
   color: PropTypes.string.isRequired,
   setShowSnackbar: PropTypes.func.isRequired,
-  FavoriteProducts: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   setModalVisible: PropTypes.func.isRequired,
   setMessage: PropTypes.func.isRequired,
 };
