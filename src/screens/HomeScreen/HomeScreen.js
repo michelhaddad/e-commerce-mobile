@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts } from '../../reducers';
+import { fetchFavorite, fetchProducts } from '../../reducers';
 //Colors
 import Colors from '../../utils/Colors';
 //Animation
@@ -32,23 +32,26 @@ const { height } = Dimensions.get('window');
 
 export const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
+  const logo = () => console.log('Refresh triggered');
   //Header Animation
   let scrollY = new Animated.Value(0);
   const user = useSelector((state) => state.auth.user);
   const products = useSelector((state) => state.store.products);
+  const collections = useSelector((state) => state.store.collections);
   const isLoading = useSelector((state) => state.store.isLoading);
   const notification = useSelector((state) => state.auth.notification);
+  const [isRefreshing, setRefresh] = useState(false);
+
+  const loadProductsAndCollections = () => {
+    setRefresh(true);
+    dispatch(fetchProducts());
+    setRefresh(false);
+  };
+
   //fetch Api
   useEffect(() => {
     // AsyncStorage.removeItem("isFirstTime");
-    const fetching = async () => {
-      try {
-        await dispatch(fetchProducts());
-      } catch (err) {
-        alert(err);
-      }
-    };
-    fetching();
+    loadProductsAndCollections();
   }, [user._id]);
 
   return (
@@ -68,6 +71,8 @@ export const HomeScreen = ({ navigation }) => {
           <AnimatedFlatList
             contentContainerStyle={styles.list}
             showsVerticalScrollIndicator={false}
+            onRefresh={loadProductsAndCollections}
+            refreshing={isRefreshing}
             ListHeaderComponent={() => (
               <View style={styles.banner}>
                 <Carousel />
@@ -82,13 +87,13 @@ export const HomeScreen = ({ navigation }) => {
               ],
               { useNativeDriver: true },
             )}
-            data={categories}
+            data={collections}
             keyExtractor={(item) => item.name}
             renderItem={({ item }) => (
               <CategorySection
                 name={item.name}
                 bg={item.bg}
-                data={products}
+                data={item.items}
                 navigation={navigation}
               />
             )}

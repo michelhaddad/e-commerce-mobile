@@ -1,5 +1,8 @@
 export const categories = [
   {
-    name: 'The best food ever',
+    name: 'The best food',
+  },
+  {
+    name: 'The drinks',
   },
 ];
