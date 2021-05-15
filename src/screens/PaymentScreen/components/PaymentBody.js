@@ -35,7 +35,7 @@ export const PaymentBody = ({ navigation, payByCard, setPayByCard, token }) => {
           <Checkbox
             status={payByCard ? 'checked' : 'unchecked'}
             color={Colors.lighter_green}
-            onPress={() => navigation.navigate('AddCreditCardScreen')}
+            onPress={() => alert('Payment by card is not available yet!')}
             // containerStyle={{ padding: 5 }}
           />
           <MaterialCommunityIcons

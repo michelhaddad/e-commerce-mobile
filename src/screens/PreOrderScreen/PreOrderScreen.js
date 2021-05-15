@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useIsFocused } from '@react-navigation/native';
 import { View, StyleSheet, ScrollView } from 'react-native';
 //Address
-import Address from './components/Address';
 //Redux
 import { useSelector } from 'react-redux';
 //Steps
