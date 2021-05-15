@@ -5,6 +5,7 @@ import {
   FAVORITE_LOADING,
   FAVORITE_FAILURE,
 } from './favoriteActions';
+const LOGOUT = 'LOGOUT';
 
 const initialState = {
   favoriteList: [],
@@ -41,6 +42,12 @@ export const favoriteReducer = (state = initialState, action) => {
       return {
         ...state,
         favoriteList: newList,
+        isLoading: false,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        favoriteList: [],
         isLoading: false,
       };
     default:

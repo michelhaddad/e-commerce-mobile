@@ -45,6 +45,7 @@ export const HomeScreen = ({ navigation }) => {
   const loadProductsAndCollections = () => {
     setRefresh(true);
     dispatch(fetchProducts());
+    dispatch(fetchFavorite());
     setRefresh(false);
   };
 
