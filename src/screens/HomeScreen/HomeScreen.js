@@ -49,7 +49,7 @@ export const HomeScreen = ({ navigation }) => {
       }
     };
     fetching();
-  }, [user.userid]);
+  }, [user._id]);
 
   return (
     <Provider>
