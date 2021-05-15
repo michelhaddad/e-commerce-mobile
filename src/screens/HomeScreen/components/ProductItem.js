@@ -38,6 +38,7 @@ export class ProductItem extends React.PureComponent {
               justifyContent: 'center',
               flexDirection: 'column',
               alignItems: 'center',
+              marginBottom: 8,
             }}
           >
             <TouchableOpacity onPress={toDetail}>
@@ -93,6 +94,7 @@ ProductItem.propTypes = {
 const styles = StyleSheet.create({
   root: {
     width: '48%',
+    marginBottom: 10,
   },
   container: {
     width: '100%',
@@ -122,6 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 5,
+    marginTop: 5,
     marginHorizontal: 5,
     justifyContent: 'space-between',
   },
