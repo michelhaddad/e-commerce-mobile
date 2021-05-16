@@ -24,7 +24,6 @@ export const AppNavigator = () => {
     if (getUser) {
       const user = await JSON.parse(getUser);
       if (Date.now() - user.data.tokenCreationDate > daysToMillis(28)) {
-        console.log('Logging out');
         dispatch(Logout());
       }
     }
