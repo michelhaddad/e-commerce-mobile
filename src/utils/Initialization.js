@@ -18,9 +18,6 @@ export const loadAssets = async () => {
     require('../assets/Images/slide1.png'),
     require('../assets/Images/slide2.png'),
     require('../assets/Images/slide3.png'),
-    require('../assets/Images/social1.png'),
-    require('../assets/Images/social2.png'),
-    require('../assets/Images/social3.png'),
     require('../assets/Images/creditcards.png'),
     require('../assets/Images/faceid.png'),
   ]);
