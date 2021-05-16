@@ -51,7 +51,6 @@ export const AppNavigator = () => {
           dispatch(Logout());
         }
       }
-      return;
     };
     autoLogout();
   }, []);
@@ -60,11 +59,11 @@ export const AppNavigator = () => {
       const getUser = await AsyncStorage.getItem('user');
       if (getUser) {
         const user = await JSON.parse(getUser);
+        console.log(user);
         if (user.data.expireTime - Date.now() < 0) {
           dispatch(Logout());
         }
       }
-      return;
     };
     autoLogout();
   }, []);

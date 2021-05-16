@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import {
   createStackNavigator,
   CardStyleInterpolators,
@@ -20,11 +19,8 @@ import { AuthScreen } from '../screens/AuthScreen';
 import { IntroScreen } from '../screens/IntroScreen';
 import { SignupScreen } from '../screens/SignupScreen';
 import { LoginScreen } from '../screens/LoginScreen';
-import { TouchIdScreen } from '../screens/TouchIdScreen';
 // Reset Screens
 import { ForgetPwScreen } from '../screens/ForgetPasswordScreen';
-import { ResetPwScreen } from '../screens/ResetPwScreen';
-import { FinishResetPwScreen } from '../screens/FinishResetPwScreen';
 // Home Screens
 import { HomeScreen } from '../screens/HomeScreen';
 import { ContactScreen } from '../screens/ContactScreen';
@@ -36,7 +32,7 @@ import { ProductScreen } from '../screens/ProductScreen';
 // Order Screens
 import { OrderScreen } from '../screens/OrderScreen';
 import { PreOrderScreen } from '../screens/PreOrderScreen';
-import { PaymentScreen, AddCreditCardScreen } from '../screens/PaymentScreen';
+import { PaymentScreen } from '../screens/PaymentScreen';
 
 import { FinishOrderScreen } from '../screens/FinishOrderScreen';
 // Profile Screens
@@ -81,10 +77,6 @@ export const AuthStackScreen = () => (
     <AuthStack.Screen name="AuthScreen" component={AuthScreen} />
     <AuthStack.Screen name="LoginScreen" component={LoginStackScreen} />
     <AuthStack.Screen name="SignupScreen" component={SignupScreen} />
-    <AuthStack.Screen
-      name="FinishResetScreen"
-      component={FinishResetPwScreen}
-    />
   </AuthStack.Navigator>
 );
 
@@ -124,10 +116,6 @@ export const PaymentStackScreen = () => (
     }}
   >
     <PaymentStack.Screen name="PaymentScreen" component={PaymentScreen} />
-    <PaymentStack.Screen
-      name="AddCreditCardScreen"
-      component={AddCreditCardScreen}
-    />
   </PaymentStack.Navigator>
 );
 
@@ -138,10 +126,6 @@ export const CartStackScreen = () => (
 
     <CartStack.Screen name="PreOrderScreen" component={PreOrderScreen} />
     <CartStack.Screen name="Payment" component={PaymentStackScreen} />
-    <CartStack.Screen
-      name="AddCreditCardScreen"
-      component={AddCreditCardScreen}
-    />
   </CartStack.Navigator>
 );
 
@@ -193,7 +177,6 @@ export const HomeStackScreen = () => (
     <HomeStack.Screen name="Cart" component={CartStackScreen} />
     <HomeStack.Screen name="Product" component={ProductStackScreen} />
     <HomeStack.Screen name="FinishOrder" component={FinishOrderScreen} />
-    <HomeStack.Screen name="ResetPw" component={ResetPwScreen} />
   </HomeStack.Navigator>
 );
 
@@ -355,31 +338,6 @@ export const DrawerNavigator = () => {
         />
       ) : (
         <>
-          {/* <Drawer.Screen
-            name="TouchId"
-            component={TouchIdScreen}
-            options={() => ({
-              title: ({ focused }) => (
-                <CustomText
-                  style={{
-                    fontSize: 14,
-                    fontWeight: '500',
-                    color: focused ? Colors.lighter_green : Colors.grey,
-                    fontFamily: 'Roboto-Medium',
-                  }}
-                >
-                  Touch/Face ID
-                </CustomText>
-              ),
-              drawerIcon: ({ focused }) => (
-                <MaterialCommunityIcons
-                  name="security"
-                  size={25}
-                  color={focused ? Colors.lighter_green : Colors.grey}
-                />
-              ),
-            })}
-          /> */}
           <Drawer.Screen
             name="Profile"
             component={ProfileStackScreen}
