@@ -9,10 +9,10 @@ const { height, width } = Dimensions.get('window');
 const DOT_SIZE = 20;
 
 const Pagination = ({ scrollX, slides }) => {
-  const inputRange = [0, width, width * 2, width * 3, width * 4];
+  const inputRange = [0, width, width * 2];
   const translateX = scrollX.interpolate({
     inputRange,
-    outputRange: [-DOT_SIZE * 2, -DOT_SIZE, 0, DOT_SIZE, DOT_SIZE * 2],
+    outputRange: [-DOT_SIZE, 0, DOT_SIZE],
   });
   return (
     <View style={[styles.pagination]}>
