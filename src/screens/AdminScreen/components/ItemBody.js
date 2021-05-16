@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   footer: {
     marginTop: 20,
     paddingHorizontal: 20,
-    minHeight: 500,
+    minHeight: 400,
     flex: 1,
   },
   titleContainer: {
