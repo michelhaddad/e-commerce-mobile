@@ -27,7 +27,6 @@ const saveDataToStorage = (name, data) => {
 };
 
 export const SignUp = (firstname, lastname, email, password) => {
-  // console.log(firstname, lastname, email, password);
   return async (dispatch) => {
     dispatch({
       type: AUTH_LOADING,
@@ -70,7 +69,6 @@ export const Login = (email, password) => {
     dispatch({
       type: AUTH_LOADING,
     });
-    // const pushToken = await AskingExpoToken();
     try {
       const response = await timeoutPromise(
         fetch(`${NEW_API_URL}/auth/login`, {
@@ -101,7 +99,6 @@ export const Login = (email, password) => {
         type: LOGIN,
         user: resData.user,
       });
-      // console.log(resData.token);
     } catch (err) {
       throw err;
     }
