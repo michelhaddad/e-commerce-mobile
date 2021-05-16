@@ -3,6 +3,9 @@ import {
   PRODUCT_LOADING,
   PRODUCT_FAILURE,
   FETCH_COLLECTIONS,
+  ADD_PRODUCT,
+  ADD_PRODUCT_FAIL,
+  START_ADD_PRODUCT,
 } from './productActions';
 import { FIRST_OPEN } from './checkFirstTimeActions';
 
@@ -40,6 +43,24 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         isFirstOpen: true,
+      };
+    }
+    case START_ADD_PRODUCT: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case ADD_PRODUCT: {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    }
+    case ADD_PRODUCT_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
       };
     }
     default:

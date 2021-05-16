@@ -38,6 +38,8 @@ import { FinishOrderScreen } from '../screens/FinishOrderScreen';
 // Profile Screens
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { EditProfileScreen } from '../screens/ProfileScreen';
+//Admin Screens
+import { AdminScreen } from '../screens/AdminScreen';
 // redux
 
 // create Navigator
@@ -89,6 +91,18 @@ export const FavoriteStackScreen = () => (
     <FavoriteStack.Screen name="FavoriteScreen" component={FavoriteScreen} />
     <FavoriteStack.Screen name="Detail" component={DetailScreen} />
   </FavoriteStack.Navigator>
+);
+
+const AdminStack = createStackNavigator();
+export const AdminStackScreen = () => (
+  <AdminStack.Navigator
+    screenOptions={{
+      headerShown: false,
+      cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+    }}
+  >
+    <AdminStack.Screen name="AdminScreen" component={AdminScreen} />
+  </AdminStack.Navigator>
 );
 
 const PaymentStack = createStackNavigator();
@@ -171,6 +185,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 export const TabScreen = () => {
   const carts = useSelector((state) => state.cart.cartItems);
+  const user = useSelector((state) => state.auth.user);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -181,6 +196,8 @@ export const TabScreen = () => {
             iconName = 'home';
           } else if (route.name === 'Favorite') {
             iconName = 'hearto';
+          } else if (route.name === 'Admin') {
+            iconName = 'edit';
           } else if (route.name === 'Cart') {
             iconName = 'shoppingcart';
           }
@@ -209,6 +226,16 @@ export const TabScreen = () => {
           tabBarLabel: 'Favorite',
         })}
       />
+      {user.roles && user.roles.includes('admin') ? (
+        <Tab.Screen
+          name="Admin"
+          component={AdminStackScreen}
+          options={() => ({
+            tabBarLabel: 'Admin',
+          })}
+        />
+      ) : null}
+
       <Tab.Screen
         name="Cart"
         component={CartStackScreen}
