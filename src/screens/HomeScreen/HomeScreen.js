@@ -81,18 +81,6 @@ export const HomeScreen = ({ navigation }) => {
               />
             )}
           />
-          {Object.keys(notification).length === 0 ? (
-            <View />
-          ) : (
-            <Snackbar
-              checkVisible={true}
-              message={
-                Object.keys(user).length === 0
-                  ? notification
-                  : notification + ' ' + user.firstName
-              }
-            />
-          )}
         </View>
       )}
     </Provider>
