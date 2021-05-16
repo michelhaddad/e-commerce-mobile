@@ -9,7 +9,7 @@ import { Logout } from '../reducers';
 //Modalize
 import { Host } from 'react-native-portalize';
 //Deep Link
-import { urlRedirect } from '../utils/Tools';
+import { daysToMillis, urlRedirect } from '../utils/Tools';
 import * as Linking from 'expo-linking';
 
 YellowBox.ignoreWarnings(['Setting a timer']);
@@ -18,6 +18,18 @@ export const AppNavigator = () => {
   const [value, setValue] = useState(null);
   const dispatch = useDispatch();
   const isFirstOpen = useSelector((state) => state.store.isFirstOpen);
+
+  const autoLogout = async () => {
+    const getUser = await AsyncStorage.getItem('user');
+    if (getUser) {
+      const user = await JSON.parse(getUser);
+      if (Date.now() - user.data.tokenCreationDate > daysToMillis(28)) {
+        console.log('Logging out');
+        dispatch(Logout());
+      }
+    }
+  };
+
   useEffect(() => {
     // listen for new url events coming from Expo
     Linking.addEventListener(
@@ -43,29 +55,9 @@ export const AppNavigator = () => {
       setValue(firstOpen);
     };
     isFirstTime();
-    const autoLogout = async () => {
-      const getUser = await AsyncStorage.getItem('user');
-      if (getUser) {
-        const user = await JSON.parse(getUser);
-        if (user.data.expireTime - Date.now() < 0) {
-          dispatch(Logout());
-        }
-      }
-    };
     autoLogout();
   }, []);
-  useEffect(() => {
-    const autoLogout = async () => {
-      const getUser = await AsyncStorage.getItem('user');
-      if (getUser) {
-        const user = await JSON.parse(getUser);
-        if (user.data.expireTime - Date.now() < 0) {
-          dispatch(Logout());
-        }
-      }
-    };
-    autoLogout();
-  }, []);
+
   return (
     <NavigationContainer ref={navigationRef}>
       <Host>
