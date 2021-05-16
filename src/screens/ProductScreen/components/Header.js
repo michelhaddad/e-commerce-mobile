@@ -61,9 +61,9 @@ export const Header = ({ navigation, searchFilterFunction, scrollY }) => {
         </View>
         <View style={styles.shareItem}>
           <ShareItem
-            imageURL="https://www.facebook.com/daquyankhangthinhvuong/"
-            title="Share our facebook page"
-            message="Our Facebook Link"
+            imageURL="https://e-commerce-d4473.web.app/"
+            title="Our Website"
+            message="Our Website Link"
             color="black"
           />
         </View>

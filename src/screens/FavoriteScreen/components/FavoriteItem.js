@@ -53,7 +53,7 @@ export const FavoriteItem = ({ navigation, item }) => {
     try {
       await dispatch(addToCart(item));
       if (!unmounted.current) {
-        Alert.alert('Thêm thành công', 'Sản phẩm đã được thêm vào giỏ hàng', [
+        Alert.alert('Success', 'The product has been added to cart', [
           {
             text: 'OK',
           },
@@ -73,7 +73,7 @@ export const FavoriteItem = ({ navigation, item }) => {
           style: 'cancel',
         },
         {
-          text: 'Agree',
+          text: 'Yes',
           onPress: () => dispatch(removeFavorite(item._id)),
         },
       ],
@@ -90,7 +90,7 @@ export const FavoriteItem = ({ navigation, item }) => {
           progress,
         )}
         {renderRightAction(
-          'Bỏ thích',
+          'Unfavorite',
           Colors.red,
           removeFavoriteAct,
           30,
@@ -125,7 +125,7 @@ export const FavoriteItem = ({ navigation, item }) => {
                 resizeMode: 'contain',
                 borderRadius: 10,
               }}
-              source={{ uri: item.thumb }}
+              source={{ uri: item.imageUrl }}
               onLoadStart={() => {
                 setIsLoading(true);
               }}
@@ -146,14 +146,14 @@ export const FavoriteItem = ({ navigation, item }) => {
             )}
           </TouchableOpacity>
           <View style={styles.info}>
-            <CustomText style={styles.title}>{item.filename}</CustomText>
-            <CustomText style={styles.subText}>{item.type}</CustomText>
+            <CustomText style={styles.title}>{item.title}</CustomText>
+            <CustomText style={styles.subText}>{item.description}</CustomText>
             <View style={styles.rateContainer}>
               <NumberFormat
                 value={item.price}
                 displayType={'text'}
                 thousandSeparator={true}
-                suffix={' đ'}
+                suffix={' LBP'}
                 renderText={(formattedValue) => (
                   <View style={styles.priceContainer}>
                     <CustomText style={styles.price}>

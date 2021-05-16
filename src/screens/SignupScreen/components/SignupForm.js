@@ -30,33 +30,33 @@ const { width, height } = Dimensions.get('window');
 const validate = (values) => {
   const errors = {};
   if (!values.email) {
-    errors.email = 'Email không được bỏ trống';
+    errors.email = 'Email is not vacant';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Email không hơp lệ';
+    errors.email = 'Please enter a valid Email';
   }
   if (!values.password) {
-    errors.password = 'Mật khẩu không được bỏ trống';
+    errors.password = 'Please enter your password';
   } else if (values.password.length < 6) {
-    errors.password = 'Mật khẩu phải nhiều hơn hoặc bằng 6 ký tự';
+    errors.password = 'Password must be at least 6 characters long';
   }
   if (!values.confirmpassword) {
-    errors.confirmpassword = 'Mật khẩu không được bỏ trống';
+    errors.confirmpassword = 'Password cannot be left blank';
   } else if (values.confirmpassword !== values.password) {
-    errors.confirmpassword = 'Mật khẩu xác nhận không trùng khớp';
+    errors.confirmpassword = 'Both passwords should be the same';
   }
   if (!values.firstName) {
-    errors.firstName = 'Tên không được bỏ trống';
+    errors.firstName = 'First Name cannot be left blank';
   } else if (values.firstName.length > 20) {
-    errors.firstName = 'Tên không vượt quá 20 ký tự';
+    errors.firstName = 'First Name should not exceed 20 characters';
   } else if (values.firstName.length < 6) {
-    errors.firstName = 'Tên phải nhiều hơn 6 ký tự';
+    errors.firstName = 'First Name must be at least 6 characters long';
   }
   if (!values.lastName) {
-    errors.lastName = 'Tên không được bỏ trống';
+    errors.lastName = 'Last Name cannot be left blank';
   } else if (values.lastName.length > 20) {
-    errors.lastName = 'Tên không vượt quá 20 ký tự';
+    errors.lastName = 'Last Name should not exceed 20 characters';
   } else if (values.lastName.length < 6) {
-    errors.lastName = 'Tên phải nhiều hơn 6 ký tự';
+    errors.lastName = 'Last Name must be at least 6 characters long';
   }
 
   return errors;

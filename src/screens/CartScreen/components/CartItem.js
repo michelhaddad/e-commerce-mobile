@@ -34,7 +34,7 @@ export class CartItem extends React.PureComponent {
               text: 'Cancel',
             },
             {
-              text: 'Agree',
+              text: 'Yes',
               onPress: onRemove,
             },
           ],

@@ -1,7 +1,7 @@
 const banners = [
   {
     id: '9471645183',
-    imageUrl: require('../assets/Images/banner1.png'),
+    imageUrl: require('../assets/Images/banner1.jpg'),
   },
   {
     id: '5656210978',

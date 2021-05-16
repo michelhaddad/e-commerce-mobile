@@ -21,11 +21,11 @@ export const OrderItem = ({ order }) => {
   const [showDetails, setShowDetails] = useState(false);
   const status = () => {
     switch (order.status) {
-      case 'waiting':
+      case 'ordered':
         return 0;
       case 'confirmed':
         return 1;
-      case 'delivery':
+      case 'delivered':
         return 2;
       default:
         return 3;
@@ -44,7 +44,7 @@ export const OrderItem = ({ order }) => {
         <View style={styles.textContainer}>
           <CustomText style={styles.text}>Date of order: </CustomText>
           <CustomText style={styles.detail}>
-            {moment(order.date).format('Do MMMM  YYYY, hh:mm a ')}
+            {moment(order.dateCreated).format('DD-MM-YYYY')}
           </CustomText>
         </View>
         <View style={styles.detailButtom}>
@@ -57,28 +57,34 @@ export const OrderItem = ({ order }) => {
         {showDetails ? (
           <View>
             <View style={styles.textContainer}>
-              <CustomText style={styles.text}>Recipient's Full Name: </CustomText>
-              <CustomText style={styles.detail}>{order.shippingAddress.firstName + ' ' + order.shippingAddress.lastName}</CustomText>
+              <CustomText style={styles.text}>
+                Recipient's Full Name:{' '}
+              </CustomText>
+              <CustomText style={styles.detail}>
+                {order.shippingAddress.firstName +
+                  ' ' +
+                  order.shippingAddress.lastName}
+              </CustomText>
             </View>
 
             <View style={styles.textContainer}>
               <CustomText style={styles.text}>Phone Number: </CustomText>
-              <CustomText style={styles.detail}>{order.shippingAddress.phoneNumber}</CustomText>
+              <CustomText style={styles.detail}>
+                {order.shippingAddress.phoneNumber}
+              </CustomText>
             </View>
 
             <View style={styles.textContainer}>
               <CustomText style={styles.text}>Full Address: </CustomText>
-              <CustomText style={styles.detail}>{order.shippingAddress.addressLine1 + ', ' + order.shippingAddress.city + ', ' + order.shippingAddress.district}</CustomText>
+              <CustomText style={styles.detail}>
+                {order.shippingAddress.addressLine1 +
+                  ', ' +
+                  order.shippingAddress.city +
+                  ', ' +
+                  order.shippingAddress.district}
+              </CustomText>
             </View>
 
-            {/* <View style={styles.textContainer}>
-              <CustomText style={styles.text}>
-                Payment Method:{' '}
-              </CustomText>
-              <CustomText style={styles.detail}>
-                {order.paymentMethod}
-              </CustomText>
-            </View> */}
             <View style={styles.steps}>
               <Steps position={status()} />
             </View>
@@ -91,7 +97,7 @@ export const OrderItem = ({ order }) => {
                 return <ItemList item={item} />;
               }}
             />
-    
+
             <View
               style={{
                 ...styles.textContainer,

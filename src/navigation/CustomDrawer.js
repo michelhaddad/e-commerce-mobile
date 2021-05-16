@@ -27,8 +27,9 @@ import { Logout as LogoutAction } from '../reducers';
 import { OpenURL } from '../utils/Tools';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const fbURL = 'https://www.facebook.com/daquyankhangthinhvuong/';
-const youtubeURL = 'https://www.youtube.com/';
+const websiteUrl = 'https://e-commerce-d4473.web.app/';
+const drinksUrl = 'https://drink-with-the-bois.web.app/';
+
 
 //custom drawer content
 export default (props) => {
@@ -107,22 +108,16 @@ export default (props) => {
           <DrawerItemList state={newState} {...rest} />
           <Drawer.Section style={styles.drawerSection}></Drawer.Section>
           <View style={styles.social}>
-            <OpenURL url={fbURL}>
+            <OpenURL url={websiteUrl}>
               <Image
                 style={{ resizeMode: 'contain', width: 80, height: 80 }}
-                source={require('../assets/Images/social1.png')}
+                source={require('../assets/Images/logo1.png')}
               />
             </OpenURL>
-            <OpenURL url={youtubeURL}>
+            <OpenURL url={drinksUrl}>
               <Image
                 style={{ resizeMode: 'contain', width: 80, height: 80 }}
-                source={require('../assets/Images/social3.png')}
-              />
-            </OpenURL>
-            <OpenURL url={fbURL}>
-              <Image
-                style={{ resizeMode: 'contain', width: 80, height: 80 }}
-                source={require('../assets/Images/social2.png')}
+                source={require('../assets/Images/cocktail.jpg')}
               />
             </OpenURL>
           </View>
@@ -212,8 +207,8 @@ const styles = StyleSheet.create({
   social: {
     marginTop: 20,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 10,
+    justifyContent: 'space-evenly',
+    marginHorizontal: 10
   },
   logout: {
     flexDirection: 'row',

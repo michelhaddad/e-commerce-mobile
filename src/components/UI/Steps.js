@@ -75,7 +75,7 @@ const Steps = (props) => {
           stepCount={4}
           currentPosition={currentPage}
           renderStepIndicator={renderStepIndicator}
-          labels={['Unconfimred', 'Confirmed', 'Delivering', 'Received']}
+          labels={['Waiting confirmation', 'Confirmed', 'Shipping', 'Received']}
         />
       </View>
     </View>

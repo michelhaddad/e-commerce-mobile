@@ -30,7 +30,7 @@ export const CartBody = ({ navigation, user, carts, isRefreshing }) => {
           text: 'Cancel',
         },
         {
-          text: 'Agree',
+          text: 'Yes',
           onPress: () => {
             dispatch(removeFromCart(carts._id, itemId));
           },
