@@ -144,7 +144,6 @@ export const ProductStackScreen = () => (
 );
 
 const ProfileStack = createStackNavigator();
-
 export const ProfileStackScreen = () => (
   <ProfileStack.Navigator
     screenOptions={{
@@ -180,9 +179,7 @@ export const HomeStackScreen = () => (
   </HomeStack.Navigator>
 );
 
-// Tab
 const Tab = createMaterialBottomTabNavigator();
-
 export const TabScreen = () => {
   const carts = useSelector((state) => state.cart.cartItems);
   const user = useSelector((state) => state.auth.user);
@@ -248,7 +245,6 @@ export const TabScreen = () => {
   );
 };
 
-// Drawer
 const Drawer = createDrawerNavigator();
 export const DrawerNavigator = () => {
   const user = useSelector((state) => state.auth.user);

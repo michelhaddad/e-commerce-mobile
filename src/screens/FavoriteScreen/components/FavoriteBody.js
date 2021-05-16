@@ -39,7 +39,7 @@ export const FavoriteBody = ({
         </View>
       ) : FavoriteProducts.length === 0 ? (
         <View style={styles.center}>
-          <CustomText style={{ fontSize: 16 }}>
+          <CustomText style={{ fontSize: 28, textAlign: 'center' }}>
             No products in favorites yet!
           </CustomText>
         </View>
@@ -64,5 +64,10 @@ FavoriteBody.propTypes = {
   FavoriteProducts: PropTypes.array.isRequired,
 };
 const styles = StyleSheet.create({
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  center: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 40,
+  },
 });

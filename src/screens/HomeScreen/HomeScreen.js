@@ -1,12 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  Platform,
-  FlatList,
-  AsyncStorage,
-} from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchFavorite, fetchProducts } from '../../reducers';
@@ -15,20 +8,12 @@ import Colors from '../../utils/Colors';
 //Animation
 import Animated from 'react-native-reanimated';
 //Components
-import {
-  Carousel,
-  Header,
-  CategorySection,
-  FloatButton,
-  categories,
-} from './components';
+import { Carousel, Header, CategorySection } from './components';
 import Skeleton from '../../components/Loaders/SkeletonLoading';
 import Snackbar from '../../components/Notification/Snackbar';
 //FloatButton
-import { Portal, Provider } from 'react-native-paper';
+import { Provider } from 'react-native-paper';
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-//height
-const { height } = Dimensions.get('window');
 
 export const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -66,9 +51,6 @@ export const HomeScreen = ({ navigation }) => {
             navigation={navigation}
             products={products}
           />
-          <Portal>
-            <FloatButton />
-          </Portal>
           <AnimatedFlatList
             contentContainerStyle={styles.list}
             showsVerticalScrollIndicator={false}

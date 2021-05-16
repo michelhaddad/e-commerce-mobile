@@ -30,7 +30,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 const websiteUrl = 'https://e-commerce-d4473.web.app/';
 const drinksUrl = 'https://drink-with-the-bois.web.app/';
 
-
 //custom drawer content
 export default (props) => {
   const user = useSelector((state) => state.auth.user);
@@ -106,7 +105,7 @@ export default (props) => {
         )}
         <View>
           <DrawerItemList state={newState} {...rest} />
-          <Drawer.Section style={styles.drawerSection}></Drawer.Section>
+          <Drawer.Section style={styles.drawerSection} />
           <View style={styles.social}>
             <OpenURL url={websiteUrl}>
               <Image
@@ -208,7 +207,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginHorizontal: 10
+    marginHorizontal: 10,
   },
   logout: {
     flexDirection: 'row',

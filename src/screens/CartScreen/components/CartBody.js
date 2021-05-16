@@ -51,8 +51,8 @@ export const CartBody = ({ navigation, user, carts, isRefreshing }) => {
         </View>
       ) : carts.items.length === 0 ? (
         <View style={styles.center}>
-          <CustomText style={{ fontSize: 16 }}>
-            Your shopping cart is empty!
+          <CustomText style={{ fontSize: 28, textAlign: 'center' }}>
+            Nothing in your cart yet!
           </CustomText>
         </View>
       ) : (
@@ -103,9 +103,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   center: {
-    height: '100%',
-    width: '100%',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 40,
   },
 });
