@@ -1,6 +1,6 @@
 ## React Native E-commerce App
 
-## :star: Get Started
+## Get Started
 
 ```bash
 # install dependencies
