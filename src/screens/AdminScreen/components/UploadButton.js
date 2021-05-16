@@ -14,7 +14,6 @@ const UploadButton = ({
   return (
     <View style={styles.button}>
       <Button
-        icon="plus"
         mode="contained"
         onPress={UploadProfile}
         // disabled={uploadButton}

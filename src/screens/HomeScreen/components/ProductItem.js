@@ -75,7 +75,7 @@ export class ProductItem extends React.PureComponent {
             </View>
             <NumberFormat price={item.price} />
           </View>
-          <View style={{ marginHorizontal: 5 }}>
+          <View style={{ marginHorizontal: 20 }}>
             <TouchableOpacity style={styles.btn} onPress={toDetail}>
               <CustomText style={styles.detailBtn}>More Details</CustomText>
             </TouchableOpacity>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    height: 190,
+    height: 210,
     // backgroundColor: "rgba(255, 255, 255, 0.9)",
     marginBottom: 15,
     borderRadius: 8,
