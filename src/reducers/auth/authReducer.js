@@ -61,7 +61,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: {},
-        notification: UserMessages['user.logout.sucesss'],
+        notification: UserMessages['user.logout.sucess'],
         isLoading: false,
       };
     case FORGET_PASSWORD:
