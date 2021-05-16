@@ -5,8 +5,6 @@ export const loadAssets = async () => {
   const imageAssets = Asset.loadAsync([
     require('../assets/Images/banner1.jpg'),
     require('../assets/Images/banner3.jpg'),
-    require('../assets/Images/banner4.jpg'),
-    require('../assets/Images/banner5.jpg'),
     require('../assets/Images/banner6.jpg'),
     require('../assets/Images/bg1.jpg'),
     require('../assets/Images/bg2.jpg'),
