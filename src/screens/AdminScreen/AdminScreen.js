@@ -3,7 +3,7 @@ import { View, StyleSheet, Dimensions, Alert } from 'react-native';
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
 //Action
-import { UploadProfilePic } from '../../reducers';
+import { AddProduct } from '../../reducers';
 import { ItemPic, ItemBody } from './components';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 //Loader
@@ -12,7 +12,7 @@ import Loader from '../../components/Loaders/Loader';
 const { width, height } = Dimensions.get('window');
 
 export const AdminScreen = (props) => {
-  const loading = useSelector((state) => state.auth.isLoading);
+  const loading = useSelector((state) => state.store.isLoading);
   const [imageUri, setImageUri] = useState('');
   const [filename, setFilename] = useState('');
   const [type, setType] = useState('');
@@ -22,7 +22,7 @@ export const AdminScreen = (props) => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState('');
 
   const dispatch = useDispatch();
   const unmounted = useRef(false);
@@ -31,7 +31,33 @@ export const AdminScreen = (props) => {
       unmounted.current = true;
     };
   }, []);
-  const UploadProfile = async () => {
+
+  const isValid = () => {
+    if (!imageUri) {
+      Alert.alert('Error', 'Please upload an image', [
+        {
+          text: 'Ok',
+        },
+      ]);
+      return false;
+    }
+    if (
+      !title ||
+      !description ||
+      !price ||
+      !quantity ||
+      categories.length === 0
+    ) {
+      Alert.alert('Error', 'Please fill all the fields', [
+        {
+          text: 'Ok',
+        },
+      ]);
+      return false;
+    }
+    return true;
+  };
+  const onAddProduct = async () => {
     try {
       // await dispatch(UploadProfilePic(imageUri, filename, type));
       // setUploadButton(true);
@@ -42,49 +68,25 @@ export const AdminScreen = (props) => {
       //     },
       //   ]);
       // }
-      if (!imageUri) {
-        Alert.alert('Error', 'Please upload an image', [
-          {
-            text: 'Ok',
-          },
-        ]);
+      if (!isValid()) {
         return;
       }
-      if (
-        !title ||
-        !description ||
-        !price ||
-        !quantity ||
-        categories.length === 0
-      ) {
-        Alert.alert('Error', 'Please fill all the fields', [
-          {
-            text: 'Ok',
-          },
-        ]);
-        return;
-      }
-      console.log(
-        'title',
+      const categoriesArray = categories
+        .split(',')
+        .map((category) => category.trim());
+      const productInfo = {
         title,
-        'description',
         description,
-        'price',
         price,
-        'quantity',
-        quantity,
-        'categories',
-        categories,
-      );
-      console.log(
-        'image uri',
-        imageUri,
-        'filename',
-        filename,
-        'file type',
-        type,
-      );
-      setCategories([]);
+        categories: categoriesArray,
+        rating: 5,
+        remainingQuantity: quantity,
+      };
+
+      await dispatch(AddProduct(productInfo, imageUri, filename, type));
+      Alert.alert('Success', 'Product was updated');
+
+      setCategories('');
       setDescription('');
       setPrice('');
       setQuantity('');
@@ -114,7 +116,7 @@ export const AdminScreen = (props) => {
               setUploadButton={setUploadButton}
               setImageUri={setImageUri}
               loading={loading}
-              UploadProfile={UploadProfile}
+              onAddProduct={onAddProduct}
               setCategories={setCategories}
               setDescription={setDescription}
               setPrice={setPrice}
@@ -138,20 +140,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    width,
     flexDirection: 'row',
     height: 0.15 * height,
     justifyContent: 'center',
   },
   profileContainer: {
-    width,
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
   },
   profileBox: {
     backgroundColor: '#fff',
     borderRadius: 20,
-    width,
+    flex: 1,
     alignItems: 'center',
   },
 });
