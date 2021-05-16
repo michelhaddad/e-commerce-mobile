@@ -109,3 +109,5 @@ export const colorCheck = (colorCode) => {
       return Colors.lighter_green;
   }
 };
+
+export const daysToMillis = (days) => days * 24 * 60 * 60 * 1000;

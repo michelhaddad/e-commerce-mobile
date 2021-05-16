@@ -82,7 +82,6 @@ export const Login = (email, password) => {
           body: JSON.stringify({
             email,
             password,
-            // pushTokens: [pushToken],
           }),
         }),
       );
@@ -95,6 +94,7 @@ export const Login = (email, password) => {
       }
       const resData = await response.json();
       resData.user.token = resData.token;
+      resData.user.tokenCreationDate = Date.now();
       saveDataToStorage('user', resData.user);
       dispatch(setLogoutTimer(60 * 60 * 1000));
       dispatch({
