@@ -55,12 +55,12 @@ export default class SearchInput extends Component {
             { height: this.titleHeight, opacity: this.titleOpacity },
           ]}
         >
-          <Text style={styles.titleText}>Tất cả sản phẩm</Text>
+          <Text style={styles.titleText}>All products</Text>
         </Animated.View>
         <View style={styles.inputBox}>
           <Ionicons name="ios-search" size={20} color={Colors.text} />
           <TextInput
-            placeholder="Nhập tên sản phẩm"
+            placeholder="Enter product name"
             clearButtonMode="always"
             style={styles.input}
             onChangeText={(text) => this._textChangeHandler(text)}

@@ -30,9 +30,9 @@ export const ProductBody = ({
   );
   const rings = productsFilter.filter((ring) => ring.type === 'ring');
   const stones = productsFilter.filter((stone) => stone.type === 'stone');
-  DATA.push({ title: 'Vòng Chuối Ngọc', data: bracelets });
-  DATA.push({ title: 'Nhẫn Ruby', data: rings });
-  DATA.push({ title: 'Đá Quý', data: stones });
+  DATA.push({ title: 'Pearl Banana Ring', data: bracelets });
+  DATA.push({ title: 'Ruby Rings', data: rings });
+  DATA.push({ title: 'Gemstone', data: stones });
   const scrollY = new Value(0);
   const sectionListRef = useRef(null);
   // const scrollToSection = (index) => {
