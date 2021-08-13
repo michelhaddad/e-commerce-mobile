@@ -1,5 +1,7 @@
 ## React Native E-commerce App
 
+### Backend: https://github.com/michelhaddad/e-commerce-node-backend
+
 ## Get Started
 
 ```bash
